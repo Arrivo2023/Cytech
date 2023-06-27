@@ -184,7 +184,7 @@
     </div>
   </div>
 </div>
-<!--a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>-->
+<a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
 @endsection
 @section('scripts')
 <script src="{{ asset('../resources/js/main.js') }}"></script>
