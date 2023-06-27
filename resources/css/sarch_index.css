@@ -1,0 +1,124 @@
+.title {
+  max-width: 1200px;
+  margin: 30px auto 60px;
+}
+
+.search-container {
+  border: 1px solid rgb(0, 0, 0);
+  max-width: 700px;
+  height: 130px;
+  margin: 30px auto 0;
+}
+.search-container h2 {
+  font-size: 30px;
+  text-align: center;
+  margin: 20px 0;
+}
+.search-container .search-container__form {
+  margin: 20px auto 0;
+  text-align: center;
+}
+.search-container .search-container__form .text {
+  width: 300px;
+}
+.search-container select {
+  margin: 0 10px;
+  width: 200px;
+}
+
+.list-container {
+  max-width: 1200px;
+  margin: 30px auto 0;
+}
+.list-container .create-btn {
+  border-radius: 10px;
+  background-color: rgb(16, 242, 220);
+  width: 100px;
+  height: 50px;
+}
+.list-container .item-list {
+  margin-top: 20px;
+}
+.list-container .item-list .item-list__table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  text-align: center;
+}
+.list-container .item-list .item-list__table .item-list__table--id {
+  width: 7%;
+}
+.list-container .item-list .item-list__table .item-list__table--image {
+  width: 11%;
+}
+.list-container .item-list .item-list__table .item-list__table--name {
+  width: 35%;
+}
+.list-container .item-list .item-list__table .item-list__table--price {
+  width: 7%;
+}
+.list-container .item-list .item-list__table .item-list__table--stock {
+  width: 7%;
+}
+.list-container .item-list .item-list__table .item-list__comment {
+  display: none;
+}
+.list-container .item-list .item-list__table .item-list__table--btn {
+  width: 9%;
+}
+.list-container .item-list .item-list__table th {
+  border: 1px solid rgb(0, 0, 0);
+  width: -moz-max-content;
+  width: max-content;
+  color: rgb(0, 166, 255);
+}
+.list-container .item-list .item-list__table td {
+  border: 1px solid rgb(0, 0, 0);
+  height: 70px;
+}
+.list-container .item-list .item-list__table td img {
+  max-width: 100%;
+  width: auto;
+}
+.list-container .item-list .item-list__table td .delBtn, .list-container .item-list .item-list__table td .infoBtn {
+  width: 75%;
+  font-size: 11px;
+  padding: 1px 6px;
+  margin-bottom: 2px;
+  border: solid buttonborder 2px;
+  table-layout: fixed;
+  border-radius: 10px;
+}
+
+.detail-modal .modal-body, .edit-modal .modal-body {
+  text-align: left;
+  margin: 0 0 0 15px;
+  padding: 0;
+}
+.detail-modal .modal-body .left-item, .detail-modal .modal-body .right-item, .edit-modal .modal-body .left-item, .edit-modal .modal-body .right-item {
+  margin: 0px 30px 10px 0;
+  margin-right: 30px;
+  vertical-align: top;
+  width: 200px;
+  float: left;
+  /*.right-item{
+    margin-left: 15px;
+  }*/
+}
+.detail-modal .modal-body .left-item .item, .detail-modal .modal-body .right-item .item, .edit-modal .modal-body .left-item .item, .edit-modal .modal-body .right-item .item {
+  margin: 15px 0;
+}
+.detail-modal .modal-body .left-item .image-label, .detail-modal .modal-body .right-item .image-label, .edit-modal .modal-body .left-item .image-label, .edit-modal .modal-body .right-item .image-label {
+  margin-bottom: 100px;
+}
+.detail-modal .modal-body input, .edit-modal .modal-body input {
+  width: 100%;
+}
+.detail-modal .modal-body textarea, .edit-modal .modal-body textarea {
+  height: 150px;
+  width: 230px;
+}
+
+/*.modal2{
+
+}*//*# sourceMappingURL=sarch_index.css.map */
