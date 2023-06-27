@@ -22,14 +22,14 @@ class SarchController extends Controller
     $productStock = $request->input('stock');
     $productComment = $request->input('comment');
 
-		$items = [
+		/*$items = [
 			$productId,
 			$productName,
 			$companyName,
 			$productPrice,
 			$productStock,
 			$productComment
-		];
+		];*/
 
 		$productsModel = new Products();
 		$query = $productsModel->getList();

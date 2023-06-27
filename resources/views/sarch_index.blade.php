@@ -62,7 +62,7 @@
 				<td id="productComment" class="item-list__comment">{{ $product -> comment }}</td>
 				<td class="item-list__table--btn">
 
-			<!--<button>詳細表示</button>-->
+				<!--<button>詳細表示</button>-->
 	<!-- Button trigger modal -->
 	<button type="button" id="infoBtn" class="btn btn-primary infoBtn" data-bs-toggle="modal" data-bs-target="#detail-modal">
 	詳細表示
@@ -143,7 +143,8 @@
       </div>
       <div class="modal-body">
 				<div class="left-item">
-					<form action="../../app/Http/Controllers/ListController.php" method="POST">
+					<form action="{{route('submit')}}" method="POST">
+					@csrf
 						<div class="item id-label modal-label">
 							<label id="idLabel">id</label><br>
 							<input type="text" value="id" id="edit-id" name="productId" readonly>
@@ -175,12 +176,12 @@
 							<textarea id="edit-productComment" name="comment"></textarea>
 						</div>
 					</div>
-				</form>
+				<!--</form>-->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-target="#detail-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="backBtn">戻る</button>
-				<button type="submit" class="btn btn-primary" data-bs-target="#detail-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="backBtn">編集</button>
-			</div>
+				<button type="submit" class="btn btn-primary" id="updateBtn">更新</button>
+			</div></form>
     </div>
   </div>
 </div>
