@@ -62,7 +62,7 @@
 				<td id="productComment" class="item-list__comment">{{ $product -> comment }}</td>
 				<td class="item-list__table--btn">
 
-				<!--<button>詳細表示</button>-->
+			<!--<button>詳細表示</button>-->
 	<!-- Button trigger modal -->
 	<button type="button" id="infoBtn" class="btn btn-primary infoBtn" data-bs-toggle="modal" data-bs-target="#detail-modal">
 	詳細表示
