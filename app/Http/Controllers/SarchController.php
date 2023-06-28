@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
-use App\Models\Products;
+use App\Models\SarchModel;
 use App\Models\Companies;
 use App\Models\Sales;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +31,7 @@ class SarchController extends Controller
 			$productComment
 		];
 
-		$productsModel = new Products();
+		$productsModel = new SarchModel();
 		$query = $productsModel->getList();
 
 		$companiesModel = new Companies();
@@ -49,15 +49,33 @@ class SarchController extends Controller
 			
 			return view('sarch_index', compact('products', 'companies'));
 			
-		if(isset($_POST['updateBtn'])){
-			$update = $productsModel->itemUpdate(
+		/*if(isset($_POST['updateBtn'])){
+			$productsModel->itemUpdate(
 				$productId,
 				$productName,
 				$productPrice,
 				$productStock,
 				$productComment
 			);
-		}
+		}*/
+/*if(isset($_POST['updateBtn'])) {
+    // 送信ボタンが押されたときの処理をここに記述します
+    
+    // 入力値の取得
+    $updateId = $_POST['productId'];
+    $updateName = $_POST['productName'];
+    $updateprice = $_POST['price'];
+    $updatestock = $_POST['stock'];
+    $updateComment = $_POST['comment'];
+    
+    // 他の処理やデータベース操作などを行います
+		$productsModel->itemUpdate();
+    
+    // 処理完了後、リダイレクトなど適切なレスポンスを返します
+    header("Location: sarch_index");
+    exit();
+}*/
+
 	}
 
 

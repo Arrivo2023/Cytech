@@ -143,7 +143,7 @@
       </div>
       <div class="modal-body">
 				<div class="left-item">
-					<form action="{{route('submit')}}" method="POST">
+					<form action="../app/Http/Controllers/UpdateController.php" method="POST">
 					@csrf
 						<div class="item id-label modal-label">
 							<label id="idLabel">id</label><br>

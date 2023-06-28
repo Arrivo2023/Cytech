@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Companies;
 
-class Products extends Model
+class SarchModel extends Model
 {
     //use HasFactory;
     
@@ -36,14 +36,15 @@ class Products extends Model
 			$productPrice,
 			$productStock,
 			$productComment*/
+			$date
 		){
 			DB::table('products')
-			->where('id', $updateId)
+			->where('id', $data->productId)
 			->update([
-				'product_name' => $updateName,
-				'product_price' => $updatePrice,
-				'stock' => $updateStock,
-				'comment' => $updateComment
+				'product_name' => $data->productName,
+				'product_price' => $data->Price,
+				'stock' => $data->Stock,
+				'comment' => $data->Comment
 				]);
 	}
 
