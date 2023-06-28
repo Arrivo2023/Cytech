@@ -180,7 +180,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-target="#detail-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="backBtn">戻る</button>
-				<button type="submit" class="btn btn-primary" id="updateBtn">更新</button>
+				<button type="submit" class="btn btn-primary" id="updateBtn" name="updateBtn">更新</button>
 			</div></form>
     </div>
   </div>

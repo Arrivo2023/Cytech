@@ -58,4 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
       edit_productCommentElement.value = productComment;
     });
   };
+
+  $updateBtn = document.getElementById("updateBtn");
+
+  $updateBtn.addEventListener("click", function(){
+    
+  });
+
 });

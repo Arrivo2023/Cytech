@@ -30,6 +30,23 @@ class Products extends Model
         return $products;
     }
 
+    public function itemUpdate(
+			$productId,
+			$productName,
+			$productPrice,
+			$productStock,
+			$productComment
+		){
+			DB::table('products')
+			->where('id', $productId)
+			->update([
+				'productName' => $productName,
+				'productPrice' => $productPrice,
+				'stock' => $productStock,
+				'comment' => $productComment
+				]);
+	}
+
     /*public function update($deta, $idNumber){
         DB::table('products')
         ->join('companies', 'company_id', '=', 'companies.id')
