@@ -143,7 +143,7 @@
       </div>
       <div class="modal-body">
 				<div class="left-item">
-					<form action="{{route('submit')}}" method="POST">
+					<form action="{{route('update')}}" method="POST">
 					@csrf
 						<div class="item id-label modal-label">
 							<label id="idLabel">id</label><br>
@@ -176,12 +176,13 @@
 							<textarea id="edit-productComment" name="comment"></textarea>
 						</div>
 					</div>
-				<!--</form>-->
+					<button type="submit" class="btn btn-primary" id="updateBtn" name="updateBtn">更新</button>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-target="#detail-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="backBtn">戻る</button>
-				<button type="submit" class="btn btn-primary" id="updateBtn" name="updateBtn">更新</button>
-			</div></form>
+			</div>
+		<!--</form>-->
     </div>
   </div>
 </div>
