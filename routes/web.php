@@ -24,9 +24,9 @@ Route::get('/', function () {
 
 Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('submit');
 Route::post('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('submit');
-Route::get('/UpdateController.php', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
-Route::post('/UpdateController.php', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
-
+Route::get('/update_data', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
+Route::post('/update_data', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
+//Route::resource('update','UpdateController');
 /*
 ログイン・ログアウトに関連するルートを設定。
 デフォルトで生成されたAuth::routes()メソッドを使用すると、必要なルートが自動的に設定される。

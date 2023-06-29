@@ -9,7 +9,7 @@
 </div>
 
 <div class="search-container">
-	<form action="" method="POST">
+	<form action="{{route('submit')}}" method="POST">
 		@csrf
 		<div class="search-container__title">
 			<h2>検索フォーム</h2>
@@ -143,7 +143,7 @@
       </div>
       <div class="modal-body">
 				<div class="left-item">
-					<form action="{{route('submit')}}" method="POST">
+					<form action="/update_data" method="POST">
 					@csrf
 						<div class="item id-label modal-label">
 							<label id="idLabel">id</label><br>

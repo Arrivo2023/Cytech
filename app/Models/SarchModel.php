@@ -30,21 +30,14 @@ class SarchModel extends Model
         return $products;
     }
 
-    public function itemUpdate(
-			/*$productId,
-			$productName,
-			$productPrice,
-			$productStock,
-			$productComment*/
-			$date
-		){
+    public function itemUpdate($data){
 			DB::table('products')
 			->where('id', $data->productId)
 			->update([
 				'product_name' => $data->productName,
-				'product_price' => $data->Price,
-				'stock' => $data->Stock,
-				'comment' => $data->Comment
+				'price' => $data->Price,
+				'stock' => $data->stock,
+				'comment' => $data->comment
 				]);
 	}
 
