@@ -9,8 +9,7 @@
 </div>
 
 <div class="search-container">
-	<form action="" method="POST">
-		@csrf
+	<form action="" method="GET">
 		<div class="search-container__title">
 			<h2>検索フォーム</h2>
 		</div>
@@ -154,8 +153,15 @@
 							<input type="text" value="商品名" id="edit-productName" name="productName">
 						</div>
 						<div class="item company-label modal-label">
-							<label>メーカー</label><br>
-							<input type="text" value="メーカー" id="edit-companyName" name="companyName">
+							<label>メーカー名</label><br>
+							<select id="edit-companyName" name="companyId">
+								<option hidden>会社名</option>
+								@foreach($companies as $company)
+								<option value="{{$company->id}}">{{$company->company_name}}</option>
+								@endforeach
+							</select>
+							<!--<label>メーカー</label><br>
+							<input type="text" value="メーカー" id="edit-companyName" name="companyName">-->
 						</div>
 						<div class="item price-label modal-label">
 							<label>価格</label><br>
