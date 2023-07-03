@@ -2,6 +2,9 @@
   max-width: 1200px;
   margin: 30px auto 60px;
 }
+.title a {
+  color: inherit;
+}
 
 .search-container {
   border: 1px solid rgb(0, 0, 0);

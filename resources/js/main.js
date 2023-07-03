@@ -21,6 +21,16 @@ document.addEventListener("DOMContentLoaded", function() {
   let edit_productStockElement = document.getElementById("edit-productStock");
   let edit_productImageElement = document.getElementById("edit-productComment");
   let edit_productCommentElement = document.getElementById("edit-productComment");
+
+  let edit_values = [
+    edit_productIdElement,
+    edit_productNameElement,
+    edit_companyNameElement,
+    edit_productPriceElement,
+    edit_productStockElement,
+    edit_productImageElement,
+    edit_productCommentElement
+  ];
   
   // 各ボタンにクリックイベントを追加
   for (let i = 0; i < buttons.length; i++) {
@@ -59,10 +69,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   };
 
-  $updateBtn = document.getElementById("updateBtn");
-
-  $updateBtn.addEventListener("click", function(){
-    
+  let createBtn = document.getElementById("create-btn");
+  createBtn.addEventListener("click", function(){
+    let modal_title = document.getElementById("modal-title");
+    let edit_id = document.getElementById("edit-id");
+    modal_title.textContent = "商品新規登録画面";
+    edit_id.value = "idは自動で登録されます";
+    edit_productNameElement.value = "";
+    //edit_id.style.visibility ="hidden";
+    edit_values.forEach((edit_value)=>{
+      edit_value.value = "";
+      console.log(edit_value.value);
+    });
   });
 
 });

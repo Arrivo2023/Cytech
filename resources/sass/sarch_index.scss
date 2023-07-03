@@ -6,6 +6,11 @@
 .title{
 max-width: 1200px;
 margin: 30px auto 60px;
+
+a{
+  color: inherit;
+  //text-decoration: inherit;
+}
 }
 
 .search-container{

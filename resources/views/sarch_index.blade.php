@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="title">
-	<h1>商品一覧画面</h1>
+	<h1><a href="{{route('index')}}">商品一覧画面</a></h1>
 </div>
 
 <div class="search-container">
@@ -27,9 +27,7 @@
 </div>
 
 <div class="list-container">
-	<form action="" method="POST">
-		<button class="create-btn">新規登録</button>
-	</form>
+		<button class="create-btn" id="create-btn" data-bs-toggle="modal" data-bs-target="#edit-modal">新規登録</button>
 
 	
 	
@@ -137,12 +135,12 @@
 <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel">商品情報編集画面</h5>
+        <h5 class="modal-title" id="modal-title">商品情報編集画面</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 				<div class="left-item">
-					<form action="{{route('update')}}" method="POST">
+					<form id="editForm" action="{{route('update')}}" method="POST">
 					@csrf
 						<div class="item id-label modal-label">
 							<label id="idLabel">id</label><br>
@@ -150,14 +148,14 @@
 						</div>
 						<div class="item product-label modal-label">
 							<label>商品名</label><br>
-							<input type="text" value="商品名" id="edit-productName" name="productName">
+							<input type="text" placeholder="商品名" id="edit-productName" name="productName">
 						</div>
 						<div class="item company-label modal-label">
 							<label>メーカー名</label><br>
-							<select id="edit-companyName" name="companyId">
+							<select id="edit-companyName" name="companyId" placeholder="{{$company->id}}">
 								<option hidden>会社名</option>
 								@foreach($companies as $company)
-								<option value="{{$company->id}}">{{$company->company_name}}</option>
+								<option placeholder="{{$company->id}}">{{$company->company_name}}</option>
 								@endforeach
 							</select>
 							<!--<label>メーカー</label><br>
@@ -165,11 +163,11 @@
 						</div>
 						<div class="item price-label modal-label">
 							<label>価格</label><br>
-							<input type="text" value="価格" id="edit-productPrice" class="price">
+							<input type="text" placeholder="価格" value="" id="edit-productPrice" class="price">
 						</div>
 						<div class="item stock-label modal-label">
 							<label>在庫数</label><br>
-							<input type="text" value="在庫数" id="edit-productStock" name="stock">
+							<input type="text" placeholder="在庫数" value="" id="edit-productStock" name="stock">
 						</div>
 					</div>
 					<div class="right-item">
@@ -179,7 +177,7 @@
 						</div>
 						<div class="item comment-label modal-label">
 							<label>コメント </label><br>
-							<textarea id="edit-productComment" name="comment"></textarea>
+							<textarea id="edit-productComment" name="comment" placeholder="コメント入力欄" value=""></textarea>
 						</div>
 					</div>
 					<button type="submit" class="btn btn-primary" id="updateBtn" name="updateBtn">更新</button>

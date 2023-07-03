@@ -18,8 +18,6 @@ class SarchModel extends Model
     }
 
     public function itemUpdate($data){
-
-			\Log::debug([$data, DB::table('products')->where('id', $data->productId)->get()]);
 			DB::table('products')
 			->where('id', $data->productId)
 			->update([
