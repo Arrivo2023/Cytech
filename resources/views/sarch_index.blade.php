@@ -155,7 +155,7 @@
 							<select id="edit-companyName" name="companyId" placeholder="{{$company->id}}">
 								<option hidden>会社名</option>
 								@foreach($companies as $company)
-								<option placeholder="{{$company->id}}">{{$company->company_name}}</option>
+								<option value="{{$company->id}}">{{$company->company_name}}</option>
 								@endforeach
 							</select>
 							<!--<label>メーカー</label><br>
@@ -163,7 +163,7 @@
 						</div>
 						<div class="item price-label modal-label">
 							<label>価格</label><br>
-							<input type="text" placeholder="価格" value="" id="edit-productPrice" class="price">
+							<input type="text" placeholder="価格" value="" id="edit-productPrice" name="price">
 						</div>
 						<div class="item stock-label modal-label">
 							<label>在庫数</label><br>

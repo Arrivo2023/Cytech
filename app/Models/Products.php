@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\Companies;
 
 class Products extends Model
 {
     //use HasFactory;
-    
+
     /*protected $table = 'products';
-    protected $fillable = 
+    protected $fillable =
     [
         'company_id',
         'product_name',
@@ -22,30 +21,31 @@ class Products extends Model
         'img_path',
     ];*/
 
-    public function getList(){
+    public function getList()
+    {
         $products = DB::table('products')
-        ->join('companies', 'company_id', '=', 'companies.id')
-        ->select('products.*', 'companies.company_name');
+            ->join('companies', 'company_id', '=', 'companies.id')
+            ->select('products.*', 'companies.company_name');
         //->get();
         return $products;
     }
 
     public function itemUpdate(
-			/*$productId,
-			$productName,
-			$productPrice,
-			$productStock,
-			$productComment*/
-		){
-			DB::table('products')
-			->where('id', $updateId)
-			->update([
-				'product_name' => $updateName,
-				'product_price' => $updatePrice,
-				'stock' => $updateStock,
-				'comment' => $updateComment
-				]);
-	}
+        /*$productId,
+        $productName,
+        $productPrice,
+        $productStock,
+        $productComment*/
+    ) {
+        DB::table('products')
+            ->where('id', $updateId)
+            ->update([
+                'product_name' => $updateName,
+                'product_price' => $updatePrice,
+                'stock' => $updateStock,
+                'comment' => $updateComment,
+            ]);
+    }
 
     /*public function update($deta, $idNumber){
         DB::table('products')
