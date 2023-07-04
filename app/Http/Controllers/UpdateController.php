@@ -19,7 +19,7 @@ class UpdateController extends Controller
             $model->itemUpdate($request);
             DB::commit();
         } catch (\Exception $e) {
-					\Log::debug($e->getMessage());
+            \Log::debug($e->getMessage());
             DB::rollback();
 
             return back();

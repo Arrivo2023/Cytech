@@ -15,6 +15,7 @@ class Companies extends Model
         $companiesLists = DB::table('companies')->get();
 
         \Log::debug($companiesLists);
+
         return $companiesLists;
     }
 
