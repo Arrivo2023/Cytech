@@ -160,8 +160,7 @@
 								@if($product->company_id == $company->id) selected @endif>{{$company->company_name}}</option>
 								@endforeach
 							</select>
-							<!--<label>メーカー</label><br>
-							<input type="text" value="メーカー" id="edit-companyName" name="companyName">-->
+							
 						</div>
 						<div class="item price-label modal-label">
 							<label>価格</label><br>
