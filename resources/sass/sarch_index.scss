@@ -116,7 +116,7 @@ margin: 30px auto 0;
 .detail-modal,.edit-modal{
 .modal-body{
   text-align: left;//labelとinputを左揃え
-  margin: 0 0 0 15px;//中央表示
+  margin: 20px 0 20px 15px;//中央表示
   padding: 0;
   //width: 70%;
   //float: left;
@@ -148,9 +148,20 @@ margin: 30px auto 0;
     width: 100%;
   }
 
+  select{
+    width: 100%;
+  }
+
   textarea{
     height: 150px;
     width: 230px;
+  }
+
+  #updateBtn{
+    //text-align: center;
+    width: 20%;
+    display: block;
+    margin: 0 auto;
   }
 }
 }

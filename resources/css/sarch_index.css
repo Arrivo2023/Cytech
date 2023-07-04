@@ -95,7 +95,7 @@
 
 .detail-modal .modal-body, .edit-modal .modal-body {
   text-align: left;
-  margin: 0 0 0 15px;
+  margin: 20px 0 20px 15px;
   padding: 0;
 }
 .detail-modal .modal-body .left-item, .detail-modal .modal-body .right-item, .edit-modal .modal-body .left-item, .edit-modal .modal-body .right-item {
@@ -117,9 +117,17 @@
 .detail-modal .modal-body input, .edit-modal .modal-body input {
   width: 100%;
 }
+.detail-modal .modal-body select, .edit-modal .modal-body select {
+  width: 100%;
+}
 .detail-modal .modal-body textarea, .edit-modal .modal-body textarea {
   height: 150px;
   width: 230px;
+}
+.detail-modal .modal-body #updateBtn, .edit-modal .modal-body #updateBtn {
+  width: 20%;
+  display: block;
+  margin: 0 auto;
 }
 
 /*.modal2{

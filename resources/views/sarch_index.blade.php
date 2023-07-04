@@ -148,14 +148,14 @@
 						</div>
 						<div class="item product-label modal-label">
 							<label>商品名</label><br>
-							<input type="text" placeholder="商品名" id="edit-productName" name="productName">
+							<input type="text" value="" placeholder="商品名" id="edit-productName" name="productName">
 						</div>
 						<div class="item company-label modal-label">
 							<label>メーカー名</label><br>
-							<select id="edit-companyName" name="companyId" placeholder="{{$company->id}}">
-								<option hidden>会社名</option>
+							<select name="companyId" placeholder="会社名">
+								<option hidden>メーカー名を選択</option>
 								@foreach($companies as $company)
-								<option value="{{$company->id}}">{{$company->company_name}}</option>
+								<option id="edit-companyName" value="{{$company->id}}" placeholder="メーカー名">{{$company->company_name}}</option>
 								@endforeach
 							</select>
 							<!--<label>メーカー</label><br>
