@@ -18,14 +18,15 @@ class SarchModel extends Model
 
     public function itemUpdate($data)
     {
+			\Log::debug($data->toArray());
         DB::table('products')
             ->where('id', $data->productId)
             ->update([
-                'products.product_name' => $data->productName,
-                'products.company_id' => $data->companyId,
-                'products.price' => $data->price,
-                'products.stock' => $data->stock,
-                'products.comment' => $data->comment,
+                'product_name' => "おいこら！",
+                'company_id' => $data->companyId,
+                'price' => $data->price,
+                'stock' => $data->stock,
+                'comment' => $data->comment,
             ]);
     }
 }

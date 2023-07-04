@@ -140,6 +140,7 @@
       </div>
       <div class="modal-body">
 				<div class="left-item">
+
 					<form id="editForm" action="{{route('update')}}" method="POST">
 					@csrf
 						<div class="item id-label modal-label">
@@ -152,10 +153,11 @@
 						</div>
 						<div class="item company-label modal-label">
 							<label>メーカー名</label><br>
-							<select name="companyId" placeholder="会社名">
+							<select id="edit-companyName" name="companyId" placeholder="会社名">
 								<option hidden>メーカー名を選択</option>
 								@foreach($companies as $company)
-								<option id="edit-companyName" value="{{$company->id}}" placeholder="メーカー名">{{$company->company_name}}</option>
+								<option value="{{$company->id}}" placeholder="メーカー名"
+								@if($product->company_id == $company->id) selected @endif>{{$company->company_name}}</option>
 								@endforeach
 							</select>
 							<!--<label>メーカー</label><br>
