@@ -106,7 +106,7 @@
 							<label>在庫数</label><br>
 							<input type="text" value="在庫数" id="product-stock" readonly>
 						</div>
-					</div>
+					<!--</div>-->
 					<div class="right-item">
 						<div class="item image-label modal-label">
 							<label>画像</label><br>
@@ -170,7 +170,7 @@
 							<label>在庫数</label><br>
 							<input type="text" placeholder="在庫数" value="" id="edit-productStock" name="stock">
 						</div>
-					</div>
+					<!--</div>-->
 					<div class="right-item">
 						<div class="item image-label modal-label">
 							<label>画像</label><br>
