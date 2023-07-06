@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   };
   
-  /*let createBtn = document.getElementById("create-btn");
+  let createBtn = document.getElementById("create-btn");
   createBtn.addEventListener("click", function(){
     
     let edit_values = [
@@ -83,6 +83,6 @@ document.addEventListener("DOMContentLoaded", function() {
       edit_value.value = "";
       console.log(edit_value.value);
     });
-  });*/
+  });
 
 });

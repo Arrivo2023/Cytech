@@ -29,4 +29,5 @@ class SarchModel extends Model
                 'comment' => $data->comment,
             ]);
     }
+		
 }

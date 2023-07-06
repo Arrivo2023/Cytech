@@ -27,5 +27,6 @@ class UpdateController extends Controller
 
         // 処理が完了したらregistにリダイレクト
         return redirect(route('index'));
+				
     }
 }

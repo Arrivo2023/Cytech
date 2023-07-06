@@ -46,23 +46,4 @@ class Products extends Model
                 'comment' => $updateComment,
             ]);
     }
-
-    /*public function update($deta, $idNumber){
-        DB::table('products')
-        ->join('companies', 'company_id', '=', 'companies.id')
-        ->where('id', $idNumber)
-        ->insert([
-            //'product_name' => $deta->productName,
-            //'company_name' => $deta->companyName,
-            //'price' => $deta->price,
-            //'stock' => $deta->stock,
-            //'comment' => $deta->comment,
-            'price' => $deta,
-            'stock' => $deta,
-            'comment' => $deta,
-        ]);
-        //->update('products.*', 'companies.company_name');
-        //->get();
-        //return $products;
-    }*/
 }

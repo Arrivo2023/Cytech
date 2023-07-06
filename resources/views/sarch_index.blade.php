@@ -119,7 +119,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="backBtn" data-bs-dismiss="modal">戻る</button>
                     <button type="button" class="btn btn-primary" data-bs-target="#edit-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="backBtn">
-                        編集
+                      編集
                     </button>
                 </div>
                 <!--<div class="modal-footer">
