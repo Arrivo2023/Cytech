@@ -23,9 +23,9 @@ Route::get('/', function () {
 });*/
 
 Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
-//Route::post('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('sarch');
+Route::post('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('sarch');
 
-//Route::get('/update_data', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
+Route::get('/update_data', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
 Route::post('/update_data', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
 //Route::resource('update','UpdateController');
 /*
