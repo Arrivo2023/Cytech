@@ -18,7 +18,7 @@
                 <select name="companies" id="companies">™
                     <option hidden>会社名</option>
                     @foreach($companies as $company)
-                        <option value="{{$company->company_name}}">{{$company->company_name}}</option>
+                        <option value="{{$company->id}}">{{$company->company_name}}</option>
                     @endforeach
                 </select>
                 <input type="submit" value="検索" class="search-container__btn">
@@ -53,7 +53,8 @@
                         <td id="productName" class="item-list__table--name">{{ $product -> product_name }}</td>
                         <td id="productPrice" class="item-list__table--price">{{ $product -> price }}</td>
                         <td id="productStock" class="item-list__table--stock">{{ $product -> stock }}</td>
-                        <td id="companyName" class="item-list__company--name">{{ $product -> company_name }}</td>
+                        <td id="companyName" class="item-list__company--name" 
+												data-value="{{$product -> companies_id}}">{{ $product -> company_name }}</td>
                         <td id="productComment" class="item-list__comment">{{ $product -> comment }}</td>
                         <td class="item-list__table--btn">
 
@@ -81,10 +82,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <!--<form action="">-->
                         <div class="left-item">
                             <div class="item id-label modal-label">
-                                <label id="idLabel">id</label><br>
+                                <label id="idLabel">ID</label><br>
                                 <input type="text" value="id" id="product-id" readonly>
                             </div>
                             <div class="item product-label modal-label">
@@ -102,17 +103,7 @@
                             <div class="item stock-label modal-label">
 															<label>在庫数</label><br>
 															<input type="text" value="在庫数" id="product-stock" readonly>
-														</div>
-														<label for="">id</label>
-														<p>333</p>
-														<label for="">商品名</label>
-														<p>レモンティー</p>
-														<label for="">メーカー</label>
-														<p>TNG</p>
-														<label for="">価格</label>
-														<p>33333</p>
-														<label for="">在庫数</label>
-														<p>11</p>
+														</div>														
 													</div>
 
 													<div class="right-item">
@@ -124,38 +115,8 @@
 															<label>コメント </label><br>
 															<textarea name="" id="product-comment" readonly></textarea>
                             </div>
-														<label for="">画像</label>
-														<p>レモンティー</p>
-														<label for="">コメント</label>
-														<p>レモンティー</p>
-                        </div>
-                    </form>
-
-
-
-
-										<table>
-											<tr>
-												<th>id</th>
-												<td></td>
-											</tr>
-											<tr>
-												<th>商品名</th>
-												<td><input type="text" value="商品名" id="product-name" readonly></td>
-											</tr>
-											<tr>
-												<th>メーカー</th>
-												<td>メーカー</td>
-											</tr>
-											<tr>
-												<th>価格</th>
-												<td>価格</td>
-											</tr>
-											<tr>
-												<th>在庫数</th>
-												<td>在庫数</td>
-											</tr>
-										</table>
+													</div>
+                    <!--</form>-->
 
 
                 </div>
@@ -185,7 +146,7 @@
                         <div class="left-item">
                             @csrf
                             <div class="item id-label modal-label">
-                                <label id="idLabel">id</label><br>
+                                <label id="idLabel">ID</label><br>
                                 <input type="text" value="id" id="edit-id" name="productId" readonly>
                             </div>
                             <div class="item product-label modal-label">

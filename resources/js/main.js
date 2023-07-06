@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
       let productPrice = row.cells[3].textContent;
       let productStock = row.cells[4].textContent;
       let companyName = row.cells[5].textContent;
+      let companyId = row.cells[5].dataset.value;
       let productComment = row.cells[6].textContent;
       
       // 詳細画面にデータセット
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
       
       //編集画面にデータセット
-      edit_productIdElement.value = productId;
+      edit_productIdElement.value = productId+"（IDは変更できません）";
       edit_productNameElement.value = productName;
       //edit_companyNameElement.value = companyName;
       edit_productPriceElement.value = productPrice;
@@ -83,7 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
       //console.log(optionElements);
       optionElements.forEach(function(optionElement){
         console.log(optionElement);
-        if(optionElement.value == productId){
+        console.log(companyId);
+        if(optionElement.value == companyId){
           console.log("'"+optionElement.value+"'"+"一致しています");
           optionElement.selected = true;
         }else{

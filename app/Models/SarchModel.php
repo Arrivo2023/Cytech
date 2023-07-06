@@ -11,7 +11,7 @@ class SarchModel extends Model
     {
         $products = DB::table('products')
             ->join('companies', 'company_id', '=', 'companies.id')
-            ->select('products.*', 'companies.company_name');
+            ->select('products.*', 'companies.id as companies_id', 'companies.company_name');
         //->get();
         return $products;
     }

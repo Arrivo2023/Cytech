@@ -28,11 +28,11 @@ class SarchController extends Controller
 
         if ($keyword && $company != '会社名') {
             $query->where('product_name', 'LIKE', "%$keyword%")
-                ->where('companies.company_name', '=', "$company");
+                ->where('companies.id', '=', "$company");
         } elseif ($keyword) {
             $query->where('product_name', 'LIKE', "%$keyword%");
         } elseif ($company) {
-            $query->where('companies.company_name', '=', "$company");
+            $query->where('companies.id', '=', "$company");
         }
         $products = $query->get();
 
