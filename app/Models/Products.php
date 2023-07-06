@@ -30,12 +30,12 @@ class Products extends Model
         return $products;
     }
 
-    public function itemUpdate(
-        /*$productId,
+    /*public function itemUpdate(
+        //$productId,
         $productName,
         $productPrice,
         $productStock,
-        $productComment*/
+        //$productComment
     ) {
         DB::table('products')
             ->where('id', $updateId)
@@ -45,5 +45,5 @@ class Products extends Model
                 'stock' => $updateStock,
                 'comment' => $updateComment,
             ]);
-    }
+    }*/
 }

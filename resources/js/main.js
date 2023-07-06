@@ -14,14 +14,33 @@ document.addEventListener("DOMContentLoaded", function() {
   let productImageElement = document.getElementById("product-image");
   let productCommentElement = document.getElementById("product-comment");
   
+  
   let edit_productIdElement = document.getElementById("edit-id");
   let edit_productNameElement = document.getElementById("edit-productName");
-  let edit_companyNameElement = document.getElementById("edit-companyName");
+  //let edit_companyNameElement = document.getElementById("edit-companyName");
+  
+  /*let count = 1;
+  let optionId = "option" + count;
+  let edit_companyNameElement = document.getElementById(optionId);
+
+  if (edit_companyNameElement) {
+      // 要素が存在する場合の処理
+      // ここで取得した要素に対して必要な操作を行います
+      console.log("要素が存在します"+optionId); // 例: 要素をコンソールに出力
+
+  } else {
+      // 要素が存在しない場合の処理
+      console.log("要素が存在しません");
+  }*/
+
+  
+  
+  
   let edit_productPriceElement = document.getElementById("edit-productPrice");
   let edit_productStockElement = document.getElementById("edit-productStock");
   let edit_productImageElement = document.getElementById("edit-productComment");
   let edit_productCommentElement = document.getElementById("edit-productComment");
-
+  
   
   // 各ボタンにクリックイベントを追加
   for (let i = 0; i < buttons.length; i++) {
@@ -49,18 +68,32 @@ document.addEventListener("DOMContentLoaded", function() {
       productImageElement.value = productImage;
       productCommentElement.value = productComment;
       
+      
+      
       //編集画面にデータセット
       edit_productIdElement.value = productId;
       edit_productNameElement.value = productName;
-      edit_companyNameElement.value = companyName;
+      //edit_companyNameElement.value = companyName;
       edit_productPriceElement.value = productPrice;
       edit_productStockElement.value = productStock;
       edit_productImageElement.value = productImage;
       edit_productCommentElement.value = productComment;
+      
+      let optionElements = document.querySelectorAll("[id^='option");
+      //console.log(optionElements);
+      optionElements.forEach(function(optionElement){
+        console.log(optionElement);
+        if(optionElement.value == productId){
+          console.log("'"+optionElement.value+"'"+"一致しています");
+          optionElement.selected = true;
+        }else{
+          console.log(optionElement.value);
+        };
+      });
     });
   };
   
-  let createBtn = document.getElementById("create-btn");
+  /*let createBtn = document.getElementById("create-btn");
   createBtn.addEventListener("click", function(){
     
     let edit_values = [
@@ -83,6 +116,6 @@ document.addEventListener("DOMContentLoaded", function() {
       edit_value.value = "";
       console.log(edit_value.value);
     });
-  });
+  });*/
 
 });

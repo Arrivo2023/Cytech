@@ -100,21 +100,64 @@
                                 <input type="text" value="価格" id="product-price" readonly>
                             </div>
                             <div class="item stock-label modal-label">
-                                <label>在庫数</label><br>
-                                <input type="text" value="在庫数" id="product-stock" readonly>
-                            </div>
-                        </div>
-                        <div class="right-item">
-                            <div class="item image-label modal-label">
-                                <label>画像</label><br>
-                                <img src="" alt="" id="product-image">
+															<label>在庫数</label><br>
+															<input type="text" value="在庫数" id="product-stock" readonly>
+														</div>
+														<label for="">id</label>
+														<p>333</p>
+														<label for="">商品名</label>
+														<p>レモンティー</p>
+														<label for="">メーカー</label>
+														<p>TNG</p>
+														<label for="">価格</label>
+														<p>33333</p>
+														<label for="">在庫数</label>
+														<p>11</p>
+													</div>
+
+													<div class="right-item">
+														<div class="item image-label modal-label">
+															<label>画像</label><br>
+															<img src="" alt="" id="product-image">
                             </div>
                             <div class="item comment-label modal-label">
-                                <label>コメント </label><br>
-                                <textarea name="" id="product-comment" readonly></textarea>
+															<label>コメント </label><br>
+															<textarea name="" id="product-comment" readonly></textarea>
                             </div>
+														<label for="">画像</label>
+														<p>レモンティー</p>
+														<label for="">コメント</label>
+														<p>レモンティー</p>
                         </div>
                     </form>
+
+
+
+
+										<table>
+											<tr>
+												<th>id</th>
+												<td></td>
+											</tr>
+											<tr>
+												<th>商品名</th>
+												<td><input type="text" value="商品名" id="product-name" readonly></td>
+											</tr>
+											<tr>
+												<th>メーカー</th>
+												<td>メーカー</td>
+											</tr>
+											<tr>
+												<th>価格</th>
+												<td>価格</td>
+											</tr>
+											<tr>
+												<th>在庫数</th>
+												<td>在庫数</td>
+											</tr>
+										</table>
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="backBtn" data-bs-dismiss="modal">戻る</button>
@@ -150,12 +193,17 @@
                                 <input type="text" value="" placeholder="商品名" id="edit-productName" name="productName">
                             </div>
                             <div class="item company-label modal-label">
+
                                 <label>メーカー名</label><br>
-                                <select id="edit-companyName" name="companyId" placeholder="会社名">
+                                <select id="edit-companyName" name="companyId">
                                     <option hidden>メーカー名を選択</option>
+																		@php
+																			$count = 1;
+																		@endphp
                                     @foreach($companies as $company)
-                                        <option value="{{$company->id}}" placeholder="メーカー名"
-                                                @if($product->company_id == $company->id) selected @endif>{{$company->company_name}}</option>
+																		
+                                        <option value="{{$company->id}}" placeholder="メーカー名" id="option{{$count++}}"
+																								>{{$company->company_name}}</option>
                                     @endforeach
                                 </select>
 
