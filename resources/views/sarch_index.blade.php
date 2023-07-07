@@ -143,7 +143,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="editForm" action="{{route('update')}}" 
-										data-route="{{route('create')}}" method="POST">
+										data-route="{{route('register')}}" method="POST">
                         <div class="left-item">
                             @csrf
                             <div class="edit-item id-label modal-label">

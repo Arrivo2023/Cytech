@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class SarchModel extends Model
+class OperationModel extends Model
 {
     public function getList()
     {

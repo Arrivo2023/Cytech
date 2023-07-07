@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Companies;
-use App\Models\SarchModel;
+use App\Models\OperationModel;
 use Illuminate\Http\Request;
 
 class SarchController extends Controller
@@ -20,7 +20,7 @@ class SarchController extends Controller
     $productStock = $request->input('stock');
     $productComment = $request->input('comment');*/
 
-        $productsModel = new SarchModel();
+        $productsModel = new OperationModel();
         $query = $productsModel->getList();
 
         $companiesModel = new Companies();
