@@ -133,13 +133,19 @@ margin: 30px auto 0;
       margin-left: 15px;
     }*/
 
-    .item{
+    .item-ditail{
+      p{
+        border: solid 1px;
+      }
+    }
+
+    .edit-item{
       margin: 15px 0;
       //text-align: center;
     }
 
-    .image-label{
-      margin-bottom: 100px;
+    .image-ditail,.image-edit{
+      margin-bottom: 105px;
       //text-align: center;
     }
   }

@@ -108,11 +108,14 @@
     margin-left: 15px;
   }*/
 }
-.detail-modal .modal-body .left-item .item, .detail-modal .modal-body .right-item .item, .edit-modal .modal-body .left-item .item, .edit-modal .modal-body .right-item .item {
+.detail-modal .modal-body .left-item .item-ditail p, .detail-modal .modal-body .right-item .item-ditail p, .edit-modal .modal-body .left-item .item-ditail p, .edit-modal .modal-body .right-item .item-ditail p {
+  border: solid 1px;
+}
+.detail-modal .modal-body .left-item .edit-item, .detail-modal .modal-body .right-item .edit-item, .edit-modal .modal-body .left-item .edit-item, .edit-modal .modal-body .right-item .edit-item {
   margin: 15px 0;
 }
-.detail-modal .modal-body .left-item .image-label, .detail-modal .modal-body .right-item .image-label, .edit-modal .modal-body .left-item .image-label, .edit-modal .modal-body .right-item .image-label {
-  margin-bottom: 100px;
+.detail-modal .modal-body .left-item .image-ditail, .detail-modal .modal-body .left-item .image-edit, .detail-modal .modal-body .right-item .image-ditail, .detail-modal .modal-body .right-item .image-edit, .edit-modal .modal-body .left-item .image-ditail, .edit-modal .modal-body .left-item .image-edit, .edit-modal .modal-body .right-item .image-ditail, .edit-modal .modal-body .right-item .image-edit {
+  margin-bottom: 105px;
 }
 .detail-modal .modal-body input, .edit-modal .modal-body input {
   width: 100%;

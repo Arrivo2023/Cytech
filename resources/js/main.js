@@ -4,6 +4,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   // ボタン要素を取得
   let buttons = document.getElementsByClassName("infoBtn");
+  let editForm = document.getElementById("editForm");
   
   // 商品詳細要素を取得
   let productIdElement = document.getElementById("product-id");
@@ -17,22 +18,22 @@ document.addEventListener("DOMContentLoaded", function() {
   
   let edit_productIdElement = document.getElementById("edit-id");
   let edit_productNameElement = document.getElementById("edit-productName");
-  //let edit_companyNameElement = document.getElementById("edit-companyName");
+  let edit_companyNameElement = document.getElementById("edit-companyName");
   
   /*let count = 1;
   let optionId = "option" + count;
   let edit_companyNameElement = document.getElementById(optionId);
-
+  
   if (edit_companyNameElement) {
-      // 要素が存在する場合の処理
-      // ここで取得した要素に対して必要な操作を行います
-      console.log("要素が存在します"+optionId); // 例: 要素をコンソールに出力
-
+    // 要素が存在する場合の処理
+    // ここで取得した要素に対して必要な操作を行います
+    console.log("要素が存在します"+optionId); // 例: 要素をコンソールに出力
+    
   } else {
-      // 要素が存在しない場合の処理
-      console.log("要素が存在しません");
+    // 要素が存在しない場合の処理
+    console.log("要素が存在しません");
   }*/
-
+  
   
   
   
@@ -41,10 +42,19 @@ document.addEventListener("DOMContentLoaded", function() {
   let edit_productImageElement = document.getElementById("edit-productComment");
   let edit_productCommentElement = document.getElementById("edit-productComment");
   
+  let updateBtn = document.getElementById("updateBtn");
   
   // 各ボタンにクリックイベントを追加
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function() {
+
+      //新規登録クリックで変更した値を再セット
+      let modal_title = document.getElementById("modal-title");
+      modal_title.textContent = "商品情報編集画面";
+      updateBtn.textContent = "更新";
+
+      //新規登録クリックで変更した値を再セット
+      editForm.action = "{{route('update')}}";
       
       // 商品の詳細データを取得
       // ボタンの親要素の親要素である行を取得
@@ -61,13 +71,13 @@ document.addEventListener("DOMContentLoaded", function() {
       let productComment = row.cells[6].textContent;
       
       // 詳細画面にデータセット
-      productIdElement.value = productId;
-      productNameElement.value = productName;
-      companyNameElement.value = companyName;
-      productPriceElement.value = productPrice;
-      productStockElement.value = productStock;
-      productImageElement.value = productImage;
-      productCommentElement.value = productComment;
+      productIdElement.textContent = productId;
+      productNameElement.textContent = productName;
+      companyNameElement.textContent = companyName;
+      productPriceElement.textContent = productPrice;
+      productStockElement.textContent = productStock;
+      productImageElement.textContent = productImage;
+      productCommentElement.textContent = productComment;
       
       
       
@@ -79,7 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
       edit_productStockElement.value = productStock;
       edit_productImageElement.value = productImage;
       edit_productCommentElement.value = productComment;
-      
+
+      //option属性の動的idを取得（optionが含まれるid属性を取得）
       let optionElements = document.querySelectorAll("[id^='option");
       //console.log(optionElements);
       optionElements.forEach(function(optionElement){
@@ -95,29 +106,50 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   };
   
-  /*let createBtn = document.getElementById("create-btn");
+  //新規登録ボタンのクリックイベント
+  let createBtn = document.getElementById("create-btn");
   createBtn.addEventListener("click", function(){
     
+    
+    //商品編集画面のタイトル・id・メーカーを取得
+    let modal_title = document.getElementById("modal-title");
+    let edit_id = document.getElementById("edit-id");
+    let default_company = document.getElementById("default-company");
+    let originalBtn = updateBtn;
+    
+    
+    //placeholder表示用に値セット
     let edit_values = [
       //edit_productIdElement,
       edit_productNameElement,
-      edit_companyNameElement,
+      //edit_companyNameElement,
       edit_productPriceElement,
       edit_productStockElement,
       edit_productImageElement,
       edit_productCommentElement
     ];
-
-    let modal_title = document.getElementById("modal-title");
-    let edit_id = document.getElementById("edit-id");
+    
+    //商品編集画面のタイトル・id・メーカーを修正
     modal_title.textContent = "商品新規登録画面";
     edit_id.value = "idは自動で登録されます";
-    //edit_productNameElement.value = "";
-    //edit_id.style.visibility ="hidden";
+    edit_companyNameElement.value = default_company.textContent;
+    
+    //各値を初期化しplaceholderを表示
     edit_values.forEach((edit_value)=>{
       edit_value.value = "";
-      console.log(edit_value.value);
+      //console.log(edit_value.value);
     });
-  });*/
+    
+    //更新ボタンを登録ボタンに変更
+    updateBtn.textContent = "登録";
+    updateBtn.name = "addBtn";
+    //editForm.action = "{{route('create')}}";
+    
+  });
+  
+  let backBtn = document.getElementById("backBtn");
+  
+    
+ 
 
 });
