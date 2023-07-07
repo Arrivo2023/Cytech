@@ -59,12 +59,13 @@ document.addEventListener("DOMContentLoaded", function() {
       //新規登録クリックで変更した値を再セット
       
       if(count == 1){
-        editForm.action=route;
         let action = editForm.getAttribute("action");
         let dataRoute = editForm.getAttribute("data-route");
 
         editForm.setAttribute("action", dataRoute);
         editForm.setAttribute("data-route", action);
+        console.log("元のルートは　"+action+"　です");
+        console.log("変更後のルートは　"+dataRoute+"　です");
 
         console.log("元のカウントは　"+count+"　です");
         count = 0;
@@ -111,8 +112,8 @@ document.addEventListener("DOMContentLoaded", function() {
       let optionElements = document.querySelectorAll("[id^='option");
       //console.log(optionElements);
       optionElements.forEach(function(optionElement){
-        console.log(optionElement);
-        console.log(companyId);
+        //console.log(optionElement);
+        //console.log(companyId);
         if(optionElement.value == companyId){
           console.log("'"+optionElement.value+"'"+"一致しています");
           optionElement.selected = true;
@@ -148,12 +149,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     if(count == 0){
-      editForm.action=route;
       let action = editForm.getAttribute("action");
       let dataRoute = editForm.getAttribute("data-route");
 
-      editForm.setAttribute("action", dataRoute);
       editForm.setAttribute("data-route", action);
+      editForm.setAttribute("action", dataRoute);
+      console.log("元のルートは　"+action+"　です");
+      console.log("変更後のルートは　"+dataRoute+"　です");
+
       console.log("元のカウントは　"+count+"　です");
       count = 1;
       console.log("変更後のカウントは　"+count+"　です");
