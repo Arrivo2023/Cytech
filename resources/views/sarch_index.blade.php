@@ -142,7 +142,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editForm" action="{{route('update')}}" method="POST">
+                    <form id="editForm" action="{{route('update')}}" 
+										data-route="{{route('create')}}" method="POST">
                         <div class="left-item">
                             @csrf
                             <div class="edit-item id-label modal-label">

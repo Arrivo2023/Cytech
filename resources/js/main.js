@@ -4,7 +4,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   // ボタン要素を取得
   let buttons = document.getElementsByClassName("infoBtn");
-  let editForm = document.getElementById("editForm");
   
   // 商品詳細要素を取得
   let productIdElement = document.getElementById("product-id");
@@ -42,19 +41,37 @@ document.addEventListener("DOMContentLoaded", function() {
   let edit_productImageElement = document.getElementById("edit-productComment");
   let edit_productCommentElement = document.getElementById("edit-productComment");
   
+  let editForm = document.getElementById("editForm");
+  let route = editForm.getAttribute("data-route");
   let updateBtn = document.getElementById("updateBtn");
+
+  let count = 0;
   
   // 各ボタンにクリックイベントを追加
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function() {
-
+      
       //新規登録クリックで変更した値を再セット
       let modal_title = document.getElementById("modal-title");
       modal_title.textContent = "商品情報編集画面";
       updateBtn.textContent = "更新";
 
       //新規登録クリックで変更した値を再セット
-      editForm.action = "{{route('update')}}";
+      
+      if(count == 1){
+        editForm.action=route;
+        let action = editForm.getAttribute("action");
+        let dataRoute = editForm.getAttribute("data-route");
+
+        editForm.setAttribute("action", dataRoute);
+        editForm.setAttribute("data-route", action);
+
+        console.log("元のカウントは　"+count+"　です");
+        count = 0;
+        console.log("変更後のカウントは　"+count+"　です");
+      }else{
+        console.log("元のカウントは　"+count+"　です");
+      }
       
       // 商品の詳細データを取得
       // ボタンの親要素の親要素である行を取得
@@ -128,6 +145,21 @@ document.addEventListener("DOMContentLoaded", function() {
       edit_productImageElement,
       edit_productCommentElement
     ];
+
+
+    if(count == 0){
+      editForm.action=route;
+      let action = editForm.getAttribute("action");
+      let dataRoute = editForm.getAttribute("data-route");
+
+      editForm.setAttribute("action", dataRoute);
+      editForm.setAttribute("data-route", action);
+      console.log("元のカウントは　"+count+"　です");
+      count = 1;
+      console.log("変更後のカウントは　"+count+"　です");
+    }else{
+      console.log("元のカウントは　"+count+"　です");
+    }
     
     //商品編集画面のタイトル・id・メーカーを修正
     modal_title.textContent = "商品新規登録画面";
