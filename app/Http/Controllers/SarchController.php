@@ -37,6 +37,6 @@ class SarchController extends Controller
         $products = $query->get();
 
         return view('sarch_index', compact('products', 'companies'));
-        
+
     }
 }

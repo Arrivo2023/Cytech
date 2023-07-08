@@ -16,10 +16,22 @@ class OperationModel extends Model
         return $products;
     }
 
-    public function itemUpdate($data)
-    {
-			//\Log::debug($data->toArray());
+
+    public function newRecord($data){
+        //\Log::debug($data->toArray());
         DB::table('products')
+        ->insert([
+            'product_name' => $data->productName,
+            'company_id' => $data->companyId,
+            'price' => $data->price,
+            'stock' => $data->stock,
+            'comment' => $data->comment
+        ]);
+    }
+
+    public function itemUpdate($data){
+			//\Log::debug($data->toArray());
+            DB::table('products')
             ->where('id', $data->productId)
             ->update([
                 'product_name' => $data->productName,
@@ -28,5 +40,12 @@ class OperationModel extends Model
                 'stock' => $data->stock,
                 'comment' => $data->comment
             ]);
+    }
+    
+    public function itemDelete($data){
+			//\Log::debug($data->toArray());
+            DB::table('products')
+            ->where('id', $data->productId)
+            ->delete();
     }
 }

@@ -83,7 +83,7 @@
   max-width: 100%;
   width: auto;
 }
-.list-container .item-list .item-list__table td .delBtn, .list-container .item-list .item-list__table td .infoBtn {
+.list-container .item-list .item-list__table td #delBtn, .list-container .item-list .item-list__table td #infoBtn {
   width: 75%;
   font-size: 11px;
   padding: 1px 6px;
@@ -107,11 +107,13 @@
   /*.right-item{
     margin-left: 15px;
   }*/
+  /*.item-ditail{
+    p{
+      border: solid 1px;
+    }
+  }*/
 }
-.detail-modal .modal-body .left-item .item-ditail p, .detail-modal .modal-body .right-item .item-ditail p, .edit-modal .modal-body .left-item .item-ditail p, .edit-modal .modal-body .right-item .item-ditail p {
-  border: solid 1px;
-}
-.detail-modal .modal-body .left-item .edit-item, .detail-modal .modal-body .right-item .edit-item, .edit-modal .modal-body .left-item .edit-item, .edit-modal .modal-body .right-item .edit-item {
+.detail-modal .modal-body .left-item .item-ditail, .detail-modal .modal-body .left-item .item-edit, .detail-modal .modal-body .right-item .item-ditail, .detail-modal .modal-body .right-item .item-edit, .edit-modal .modal-body .left-item .item-ditail, .edit-modal .modal-body .left-item .item-edit, .edit-modal .modal-body .right-item .item-ditail, .edit-modal .modal-body .right-item .item-edit {
   margin: 15px 0;
 }
 .detail-modal .modal-body .left-item .image-ditail, .detail-modal .modal-body .left-item .image-edit, .detail-modal .modal-body .right-item .image-ditail, .detail-modal .modal-body .right-item .image-edit, .edit-modal .modal-body .left-item .image-ditail, .edit-modal .modal-body .left-item .image-edit, .edit-modal .modal-body .right-item .image-ditail, .edit-modal .modal-body .right-item .image-edit {

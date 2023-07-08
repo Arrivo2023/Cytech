@@ -64,8 +64,11 @@
                                 詳細表示
                             </button>
 
-
-                            <button class="delBtn">削除</button>
+														<form action="{{route('itemDelete')}}" method="POST">
+														@csrf
+															<input type="hidden" value="" id="deleteId" class="deleteId" name="productId">
+															<input type="submit" value="削除" id="delBtn" class="delBtn">
+														</form>
                         </td>
                     </tr>
                 @endforeach
@@ -86,34 +89,34 @@
                         <div class="left-item">
                             <div class="item-ditail id-label modal-label">
                                 <label id="idLabel">ID</label><br>
-                                <p id="product-id" readonly></p>
+                                <input id="product-id" readonly>
                             </div>
                             <div class="item-ditail product-label modal-label">
                                 <label>商品名</label><br>
-                                <p id="product-name" readonly></p>
+                                <input id="product-name" readonly>
                             </div>
                             <div class="item-ditail company-label modal-label">
                                 <label>メーカー</label><br>
-                                <p id="company-name" readonly></p>
+                                <input id="company-name" readonly>
                             </div>
                             <div class="item-ditail price-label modal-label">
                                 <label>価格</label><br>
-                                <p id="product-price" readonly></p>
+                                <input id="product-price" readonly>
                             </div>
                             <div class="item-ditail stock-label modal-label">
-															<label>在庫数</label><br>
-															<p id="product-stock" class=""></p>
-														</div>														
-													</div>
+                                <label>在庫数</label><br>
+                                <input id="product-stock" class="">
+                            </div>														
+                        </div>
 
-													<div class="right-item">
-														<div class="item-ditail image-label modal-label">
-															<label>画像</label><br>
-															<img src="" alt="" id="product-image" class="image-ditail">
+                        <div class="right-item">
+                            <div class="item-ditail image-label modal-label">
+                                <label>画像</label><br>
+                                <img src="" alt="" id="product-image" class="image-ditail">
                             </div>
                             <div class="item-ditail comment-label modal-label">
 															<label>コメント </label><br>
-															<p id="product-comment"></p>
+															<textarea id="product-comment"></textarea>
                             </div>
 													</div>
                     <!--</form>-->
@@ -143,18 +146,18 @@
                 </div>
                 <div class="modal-body">
                     <form id="editForm" action="{{route('update')}}" 
-										data-route="{{route('register')}}" method="POST">
+										data-route="{{route('newRecord')}}" method="POST">
                         <div class="left-item">
                             @csrf
-                            <div class="edit-item id-label modal-label">
+                            <div class="item-edit id-label modal-label">
                                 <label id="idLabel">ID</label><br>
                                 <input type="text" value="id" id="edit-id" name="productId" readonly>
                             </div>
-                            <div class="edit-item product-label modal-label">
+                            <div class="item-edit product-label modal-label">
                                 <label>商品名</label><br>
                                 <input type="text" value="" placeholder="商品名" id="edit-productName" name="productName">
                             </div>
-                            <div class="edit-item company-label modal-label">
+                            <div class="item-edit company-label modal-label">
                                 <label>メーカー名</label><br>
                                 <select id="edit-companyName" name="companyId">
                                     <option id="default-company" hidden>メーカー名を選択</option>
@@ -169,11 +172,11 @@
                                 </select>
 
                             </div>
-                            <div class="edit-item price-label modal-label">
+                            <div class="item-edit price-label modal-label">
                                 <label>価格</label><br>
                                 <input type="text" placeholder="価格" value="" id="edit-productPrice" name="price">
                             </div>
-                            <div class="edit-item stock-label modal-label">
+                            <div class="item-zedit stock-label modal-label">
                                 <label>在庫数</label><br>
                                 <input type="text" placeholder="在庫数" value="" id="edit-productStock" name="stock">
                             </div>

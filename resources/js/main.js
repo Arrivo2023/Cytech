@@ -4,6 +4,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   // ボタン要素を取得
   let buttons = document.getElementsByClassName("infoBtn");
+  //let delButtons = document.getElementsByClassName("delBtn");
   
   // 商品詳細要素を取得
   let productIdElement = document.getElementById("product-id");
@@ -46,6 +47,21 @@ document.addEventListener("DOMContentLoaded", function() {
   let updateBtn = document.getElementById("updateBtn");
 
   let count = 0;
+
+  let delButtons = document.getElementsByClassName("delBtn");
+  for (let i = 0; i < delButtons.length; i++) {
+    delButtons[i].addEventListener("click", function() {
+      let row = this.parentNode.parentNode.parentNode;
+      
+      //取得した行の各sellを変数に代入
+      let productId = row.cells[0].textContent;
+      console.log(productId);
+
+      let deleteId = document.getElementById("deleteId");
+      deleteId.value = productId;
+    });
+  };
+  
   
   // 各ボタンにクリックイベントを追加
   for (let i = 0; i < buttons.length; i++) {
@@ -89,13 +105,13 @@ document.addEventListener("DOMContentLoaded", function() {
       let productComment = row.cells[6].textContent;
       
       // 詳細画面にデータセット
-      productIdElement.textContent = productId;
-      productNameElement.textContent = productName;
-      companyNameElement.textContent = companyName;
-      productPriceElement.textContent = productPrice;
-      productStockElement.textContent = productStock;
-      productImageElement.textContent = productImage;
-      productCommentElement.textContent = productComment;
+      productIdElement.value = productId;
+      productNameElement.value = productName;
+      companyNameElement.value = companyName;
+      productPriceElement.value = productPrice;
+      productStockElement.value = productStock;
+      productImageElement.value = productImage;
+      productCommentElement.value = productComment;
       
       
       
@@ -162,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log("変更後のカウントは　"+count+"　です");
     }else{
       console.log("元のカウントは　"+count+"　です");
-    }
+    };
     
     //商品編集画面のタイトル・id・メーカーを修正
     modal_title.textContent = "商品新規登録画面";

@@ -8,46 +8,51 @@ use Illuminate\Support\Facades\DB;
 
 class OperationController extends Controller
 {
-    public function register(Request $request)
+    public function newRecord(Request $request)
     {
-        // トランザクション開始
         DB::beginTransaction();
 
         try {
-            // 登録処理呼び出し
             $model = new OperationModel();
-            $model->itemUpdate($request);
+            $model->newRecord($request);
             DB::commit();
         } catch (\Exception $e) {
             \Log::debug($e->getMessage());
             DB::rollback();
-
             return back();
         }
-
-        // 処理が完了したらregistにリダイレクト
-        return redirect(route('index'));
-				
+        return redirect(route('index'));		
     }
+
     public function update(Request $request)
     {
-        // トランザクション開始
         DB::beginTransaction();
 
         try {
-            // 登録処理呼び出し
             $model = new OperationModel();
             $model->itemUpdate($request);
             DB::commit();
         } catch (\Exception $e) {
             \Log::debug($e->getMessage());
             DB::rollback();
-
             return back();
         }
+        return redirect(route('index'));		
+    }
+    
+    public function itemDelete(Request $request)
+    {
+        DB::beginTransaction();
 
-        // 処理が完了したらregistにリダイレクト
-        return redirect(route('index'));
-				
+        try {
+            $model = new OperationModel();
+            $model->itemDelete($request);
+            DB::commit();
+        } catch (\Exception $e) {
+            \Log::debug($e->getMessage());
+            DB::rollback();
+            return back();
+        }
+        return redirect(route('index'));		
     }
 }
