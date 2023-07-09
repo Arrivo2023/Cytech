@@ -49,7 +49,7 @@
 
                     <tr>
                         <td id="productId" class="item-list__table--id">{{ $product -> id }}</td>
-                        <td id="productImage" class="item-list__table--image"><!--<img src="{{ $product -> img_path }}"/>--></td>
+                        <td id="productImage" class="item-list__table--image"><img src="{{ asset($product -> img_path) }}"/></td>
                         <td id="productName" class="item-list__table--name">{{ $product -> product_name }}</td>
                         <td id="productPrice" class="item-list__table--price">{{ $product -> price }}</td>
                         <td id="productStock" class="item-list__table--stock">{{ $product -> stock }}</td>
@@ -66,8 +66,8 @@
 
 														<form action="{{route('itemDelete')}}" method="POST">
 														@csrf
-															<input type="hidden" value="" id="deleteId" class="deleteId" name="productId">
-															<input type="submit" value="削除" id="delBtn" class="delBtn">
+															<input type="hidden" value="{{ $product -> id}}" class="deleteId" name="productId">
+															<input type="submit" value="削除" class="delBtn">
 														</form>
                         </td>
                     </tr>
@@ -105,7 +105,7 @@
                             </div>
                             <div class="item-ditail stock-label modal-label">
                                 <label>在庫数</label><br>
-                                <input id="product-stock" class="">
+                                <input id="product-stock" class="" readonly>
                             </div>														
                         </div>
 
@@ -116,7 +116,7 @@
                             </div>
                             <div class="item-ditail comment-label modal-label">
 															<label>コメント </label><br>
-															<textarea id="product-comment"></textarea>
+															<textarea id="product-comment" readonly></textarea>
                             </div>
 													</div>
                     <!--</form>-->
@@ -146,7 +146,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="editForm" action="{{route('update')}}" 
-										data-route="{{route('newRecord')}}" method="POST">
+										data-route="{{route('newRecord')}}" method="POST" enctype="multipart/form-data">
                         <div class="left-item">
                             @csrf
                             <div class="item-edit id-label modal-label">
@@ -155,12 +155,12 @@
                             </div>
                             <div class="item-edit product-label modal-label">
                                 <label>商品名</label><br>
-                                <input type="text" value="" placeholder="商品名" id="edit-productName" name="productName">
+                                <input type="text" value="" placeholder="商品名" id="edit-productName" name="productName" required>
                             </div>
                             <div class="item-edit company-label modal-label">
                                 <label>メーカー名</label><br>
-                                <select id="edit-companyName" name="companyId">
-                                    <option id="default-company" hidden>メーカー名を選択</option>
+                                <select id="edit-companyName" name="companyId" required>
+                                    <option id="default-company" hidden disabled></option>
 																		@php
 																			$count = 1;
 																		@endphp
@@ -184,7 +184,7 @@
                         <div class="right-item">
                             <div class="edit-item image-label modal-label">
                                 <label>画像</label><br>
-                                <img src="" alt="" id="product-image" class="image-edit">
+                                <input type="file" id="product-image" class="image-edit" name="file">
                             </div>
                             <div class="edit-item comment-label modal-label">
                                 <label>コメント </label><br>

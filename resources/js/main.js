@@ -4,7 +4,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   // ボタン要素を取得
   let buttons = document.getElementsByClassName("infoBtn");
-  //let delButtons = document.getElementsByClassName("delBtn");
   
   // 商品詳細要素を取得
   let productIdElement = document.getElementById("product-id");
@@ -19,61 +18,30 @@ document.addEventListener("DOMContentLoaded", function() {
   let edit_productIdElement = document.getElementById("edit-id");
   let edit_productNameElement = document.getElementById("edit-productName");
   let edit_companyNameElement = document.getElementById("edit-companyName");
-  
-  /*let count = 1;
-  let optionId = "option" + count;
-  let edit_companyNameElement = document.getElementById(optionId);
-  
-  if (edit_companyNameElement) {
-    // 要素が存在する場合の処理
-    // ここで取得した要素に対して必要な操作を行います
-    console.log("要素が存在します"+optionId); // 例: 要素をコンソールに出力
-    
-  } else {
-    // 要素が存在しない場合の処理
-    console.log("要素が存在しません");
-  }*/
-  
-  
-  
-  
   let edit_productPriceElement = document.getElementById("edit-productPrice");
   let edit_productStockElement = document.getElementById("edit-productStock");
   let edit_productImageElement = document.getElementById("edit-productComment");
   let edit_productCommentElement = document.getElementById("edit-productComment");
   
   let editForm = document.getElementById("editForm");
-  let route = editForm.getAttribute("data-route");
   let updateBtn = document.getElementById("updateBtn");
 
   let count = 0;
 
-  let delButtons = document.getElementsByClassName("delBtn");
-  for (let i = 0; i < delButtons.length; i++) {
-    delButtons[i].addEventListener("click", function() {
-      let row = this.parentNode.parentNode.parentNode;
-      
-      //取得した行の各sellを変数に代入
-      let productId = row.cells[0].textContent;
-      console.log(productId);
-
-      let deleteId = document.getElementById("deleteId");
-      deleteId.value = productId;
-    });
-  };
   
-  
-  // 各ボタンにクリックイベントを追加
+  //for文で詳細ボタンの数だけ繰り返し処理
   for (let i = 0; i < buttons.length; i++) {
+    // 各ボタンにクリックイベントを追加
     buttons[i].addEventListener("click", function() {
       
-      //新規登録クリックで変更した値を再セット
+      //新規登録画面との差をリセット
       let modal_title = document.getElementById("modal-title");
       modal_title.textContent = "商品情報編集画面";
       updateBtn.textContent = "更新";
 
       //新規登録クリックで変更した値を再セット
-      
+      //更新ボタンと登録ボタンでルートを切り替え
+      //変更前後の値をコンソールで確認
       if(count == 1){
         let action = editForm.getAttribute("action");
         let dataRoute = editForm.getAttribute("data-route");
@@ -90,13 +58,13 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("元のカウントは　"+count+"　です");
       }
       
-      // 商品の詳細データを取得
+      // 商品詳細データを取得
       // ボタンの親要素の親要素である行を取得
       let row = this.parentNode.parentNode;
       
       //取得した行の各sellを変数に代入
       let productId = row.cells[0].textContent;
-      let productImage = row.cells[1].textContent;
+      let productImage = row.cells[1].querySelector('img').src;
       let productName = row.cells[2].textContent;
       let productPrice = row.cells[3].textContent;
       let productStock = row.cells[4].textContent;
@@ -110,11 +78,11 @@ document.addEventListener("DOMContentLoaded", function() {
       companyNameElement.value = companyName;
       productPriceElement.value = productPrice;
       productStockElement.value = productStock;
-      productImageElement.value = productImage;
+      productImageElement.src = productImage;
       productCommentElement.value = productComment;
       
-      
-      
+      console.log(productImage);
+
       //編集画面にデータセット
       edit_productIdElement.value = productId+"（IDは変更できません）";
       edit_productNameElement.value = productName;
@@ -139,6 +107,8 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   };
+
+
   
   //新規登録ボタンのクリックイベント
   let createBtn = document.getElementById("create-btn");
@@ -154,9 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     //placeholder表示用に値セット
     let edit_values = [
-      //edit_productIdElement,
       edit_productNameElement,
-      //edit_companyNameElement,
       edit_productPriceElement,
       edit_productStockElement,
       edit_productImageElement,
@@ -194,13 +162,8 @@ document.addEventListener("DOMContentLoaded", function() {
     //更新ボタンを登録ボタンに変更
     updateBtn.textContent = "登録";
     updateBtn.name = "addBtn";
-    //editForm.action = "{{route('create')}}";
     
   });
   
-  let backBtn = document.getElementById("backBtn");
-  
-    
- 
-
+  //let backBtn = document.getElementById("backBtn");
 });

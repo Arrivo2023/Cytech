@@ -25,15 +25,19 @@ Route::get('/', function () {
 Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
 Route::post('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('sarch');
 
-//Route::get('/update_data', [App\Http\Controllers\UpdateController::class, 'update'])->name('update');
 Route::post('/newRecord', [App\Http\Controllers\OperationController::class, 'newRecord'])->name('newRecord');
 Route::post('/update', [App\Http\Controllers\OperationController::class, 'update'])->name('update');
 Route::post('/itemDelete', [App\Http\Controllers\OperationController::class, 'itemDelete'])->name('itemDelete');
-//Route::resource('update','UpdateController');
+
 /*
 ログイン・ログアウトに関連するルートを設定。
 デフォルトで生成されたAuth::routes()メソッドを使用すると、必要なルートが自動的に設定される。
  */
 Auth::routes();
+/*商品一覧ページにアクセスした時、ログインしていなければログインページに遷移*/
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [App\Http\Controllers\SarchController::class, 'index'])->name('home');
+    Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

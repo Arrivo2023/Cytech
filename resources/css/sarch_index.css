@@ -83,7 +83,7 @@
   max-width: 100%;
   width: auto;
 }
-.list-container .item-list .item-list__table td #delBtn, .list-container .item-list .item-list__table td #infoBtn {
+.list-container .item-list .item-list__table td .delBtn, .list-container .item-list .item-list__table td .infoBtn {
   width: 75%;
   font-size: 11px;
   padding: 1px 6px;

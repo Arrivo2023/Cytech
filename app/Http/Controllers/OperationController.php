@@ -10,6 +10,7 @@ class OperationController extends Controller
 {
     public function newRecord(Request $request)
     {
+
         DB::beginTransaction();
 
         try {
