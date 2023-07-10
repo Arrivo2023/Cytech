@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="title">
-        <h1><a href="{{route('index')}}">商品一覧画面</a></h1>
+        <h1><a href="{{ route('index') }}">商品一覧画面</a></h1>
     </div>
 
     <div class="search-container">
@@ -152,6 +152,7 @@
                             <div class="item-edit id-label modal-label">
                                 <label id="idLabel">ID</label><br>
                                 <input type="text" value="id" id="edit-id" name="productId" readonly>
+                                <span>あああああ</span>
                             </div>
                             <div class="item-edit product-label modal-label">
                                 <label>商品名</label><br>
@@ -176,17 +177,17 @@
                                 <label>価格</label><br>
                                 <input type="text" placeholder="価格" value="" id="edit-productPrice" name="price">
                             </div>
-                            <div class="item-zedit stock-label modal-label">
+                            <div class="item-edit stock-label modal-label">
                                 <label>在庫数</label><br>
                                 <input type="text" placeholder="在庫数" value="" id="edit-productStock" name="stock">
                             </div>
                         </div>
                         <div class="right-item">
-                            <div class="edit-item image-label modal-label">
+                            <div class="item-edit image-label modal-label">
                                 <label>画像</label><br>
                                 <input type="file" id="product-image" class="image-edit" name="file">
                             </div>
-                            <div class="edit-item comment-label modal-label">
+                            <div class="item-edit comment-label modal-label">
                                 <label>コメント </label><br>
                                 <textarea id="edit-productComment" name="comment" placeholder="コメント入力欄" value=""></textarea>
                             </div>
@@ -195,7 +196,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-								<button type="button" class="btn btn-secondary" id="backBtn" data-bs-dismiss="modal">戻る</button>
+                        <button type="button" class="btn btn-secondary" id="backBtn" data-bs-target="#detail-modal" data-bs-toggle="modal">戻る</button>
                 </div>
                 <!--</form>-->
             </div>

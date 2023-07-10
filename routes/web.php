@@ -17,11 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//レイアウト編集のためとりあえず指定
-/*Route::get('/item_list', function () {
-    return view('item_list');
-});*/
-
+//Route::get('/', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
 Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
 Route::post('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('sarch');
 
@@ -36,7 +32,7 @@ Route::post('/itemDelete', [App\Http\Controllers\OperationController::class, 'it
 Auth::routes();
 /*商品一覧ページにアクセスした時、ログインしていなければログインページに遷移*/
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', [App\Http\Controllers\SarchController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\SarchController::class, 'index'])->name('home');
     Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
 });
 

@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(productImage);
 
       //編集画面にデータセット
+      //edit_productIdElement.value = productId;
       edit_productIdElement.value = productId+"（IDは変更できません）";
       edit_productNameElement.value = productName;
       //edit_companyNameElement.value = companyName;
@@ -119,8 +120,14 @@ document.addEventListener("DOMContentLoaded", function() {
     let modal_title = document.getElementById("modal-title");
     let edit_id = document.getElementById("edit-id");
     let default_company = document.getElementById("default-company");
-    let originalBtn = updateBtn;
+    //let originalBtn = updateBtn;
     
+    //新規登録画面のデータセット
+    modal_title.textContent = "商品新規登録画面";
+    edit_id.value = "idは自動で登録されます";
+    edit_companyNameElement.value = default_company.textContent;
+    updateBtn.textContent = "登録";
+    updateBtn.name = "addBtn";
     
     //placeholder表示用に値セット
     let edit_values = [
@@ -130,6 +137,12 @@ document.addEventListener("DOMContentLoaded", function() {
       edit_productImageElement,
       edit_productCommentElement
     ];
+
+    //各値を初期化しplaceholderを表示
+    edit_values.forEach((edit_value)=>{
+      edit_value.value = "";
+      //console.log(edit_value.value);
+    });
 
 
     if(count == 0){
@@ -147,22 +160,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
       console.log("元のカウントは　"+count+"　です");
     };
-    
-    //商品編集画面のタイトル・id・メーカーを修正
-    modal_title.textContent = "商品新規登録画面";
-    edit_id.value = "idは自動で登録されます";
-    edit_companyNameElement.value = default_company.textContent;
-    
-    //各値を初期化しplaceholderを表示
-    edit_values.forEach((edit_value)=>{
-      edit_value.value = "";
-      //console.log(edit_value.value);
-    });
-    
-    //更新ボタンを登録ボタンに変更
-    updateBtn.textContent = "登録";
-    updateBtn.name = "addBtn";
-    
+
   });
   
   //let backBtn = document.getElementById("backBtn");

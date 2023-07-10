@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-
 
 class OperationModel extends Model
 {
@@ -17,69 +15,83 @@ class OperationModel extends Model
         //->get();
         return $products;
     }
-    
-    
-    public function newRecord($data){
+
+    public function newRecord($data)
+    {
         \Log::debug($data->toArray());
 
         //商品画像を取得 -> 一意のID生成 -> 保存　・　DBにpathを登録
         $file = $data->file('file');
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $filePath = null;
         $directory = 'storage/images';
-        $file->move($directory, $fileName);
-        
+        if ($file) {
+            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move($directory, $fileName);
+            $filePath = $directory.'/'.$fileName;
+            \Log::debug($fileName);
+        }
+
         DB::table('products')
-        ->insert([
-            'product_name' => $data->productName,
-            'company_id' => $data->companyId,
-            'price' => $data->price,
-            'stock' => $data->stock,
-            'comment' => $data->comment,
-            'img_path' => $directory . '/' . $fileName
-        ]);
+            ->insert([
+                'product_name' => $data->productName,
+                'company_id' => $data->companyId,
+                'price' => $data->price,
+                'stock' => $data->stock,
+                'comment' => $data->comment,
+                'img_path' => $filePath
+            ]);
     }
 
-    public function itemUpdate($data){
-        //\Log::debug($data->toArray());
-        
+    public function itemUpdate($data)
+    {
+        \Log::debug($data->toArray());
+
         //商品画像を取得 -> 一意のID生成 -> 保存　・　DBにpathを登録
         $file = $data->file('file');
-        $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
+        $filePath = null;
         $directory = 'storage/images';
-        $file->move($directory, $fileName);
-
-        
-        $filePath = DB::table('products')
-            ->where('id', $data->productId)
-            ->select('img_path')
-            ->get();
+        if ($file) {
+            $fileName = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move($directory, $fileName);
+            $filePath = $directory.'/'.$fileName;
+            \Log::debug($fileName);
+        }else{
+            $beforeFilePath = DB::table('products')
+                ->where('id', $data->productId)
+                ->select('img_path')
+                ->get();
+            $filePath = $beforeFilePath;
             \Log::debug($filePath);
+        }
+        \Log::debug($filePath);
+
         //$filePath = 'storage/images/example.jpg'; // 削除するファイルのパス
 
-        if (file_exists($filePath)) {
+        /*if (file_exists($filePath)) {
             unlink($filePath); // ファイルを削除
-        }/* else {
+        } else {
             // ファイルが存在しない場合の処理
             echo "ファイルが存在しません。";
         }*/
 
-
+        \Log::debug($data->productId);
         DB::table('products')
-        ->where('id', $data->productId)
-        ->update([
-            'product_name' => $data->productName,
-            'company_id' => $data->companyId,
-            'price' => $data->price,
-            'stock' => $data->stock,
-            'comment' => $data->comment,
-            'img_path' => $directory . '/' . $fileName
-            //'img_path' => $fileName
-        ]);
+            ->where('id', $data->productId)
+            ->update([
+                'product_name' => $data->productName,
+                'company_id' => $data->companyId,
+                'price' => $data->price,
+                'stock' => $data->stock,
+                'comment' => $data->comment,
+                'img_path' => $filePath
+                //'img_path' => $fileName
+            ]);
     }
-    
-    public function itemDelete($data){
-			//\Log::debug($data->toArray());
-            DB::table('products')
+
+    public function itemDelete($data)
+    {
+        //\Log::debug($data->toArray());
+        DB::table('products')
             ->where('id', $data->productId)
             ->delete();
     }

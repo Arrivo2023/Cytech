@@ -34,7 +34,7 @@ class SarchController extends Controller
         } elseif ($company) {
             $query->where('companies.id', '=', "$company");
         }
-        $products = $query->get();
+        $products = $query->orderBy('products.id')->get();
 
         return view('sarch_index', compact('products', 'companies'));
 

@@ -117,7 +117,7 @@
   margin: 15px 0;
 }
 .detail-modal .modal-body .left-item .image-ditail, .detail-modal .modal-body .left-item .image-edit, .detail-modal .modal-body .right-item .image-ditail, .detail-modal .modal-body .right-item .image-edit, .edit-modal .modal-body .left-item .image-ditail, .edit-modal .modal-body .left-item .image-edit, .edit-modal .modal-body .right-item .image-ditail, .edit-modal .modal-body .right-item .image-edit {
-  margin-bottom: 105px;
+  width: 100%;
 }
 .detail-modal .modal-body input, .edit-modal .modal-body input {
   width: 100%;

@@ -20,9 +20,11 @@ class OperationController extends Controller
         } catch (\Exception $e) {
             \Log::debug($e->getMessage());
             DB::rollback();
+
             return back();
         }
-        return redirect(route('index'));		
+
+        return redirect(route('index'));
     }
 
     public function update(Request $request)
@@ -36,11 +38,13 @@ class OperationController extends Controller
         } catch (\Exception $e) {
             \Log::debug($e->getMessage());
             DB::rollback();
+
             return back();
         }
-        return redirect(route('index'));		
+
+        return redirect(route('index'));
     }
-    
+
     public function itemDelete(Request $request)
     {
         DB::beginTransaction();
@@ -52,8 +56,10 @@ class OperationController extends Controller
         } catch (\Exception $e) {
             \Log::debug($e->getMessage());
             DB::rollback();
+
             return back();
         }
-        return redirect(route('index'));		
+
+        return redirect(route('index'));
     }
 }
