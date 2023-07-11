@@ -35,5 +35,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\SarchController::class, 'index'])->name('home');
     Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
 });
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

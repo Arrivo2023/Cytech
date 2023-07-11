@@ -84,10 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(productImage);
 
       //編集画面にデータセット
-      //edit_productIdElement.value = productId;
       edit_productIdElement.value = productId+"（IDは変更できません）";
       edit_productNameElement.value = productName;
-      //edit_companyNameElement.value = companyName;
       edit_productPriceElement.value = productPrice;
       edit_productStockElement.value = productStock;
       edit_productImageElement.value = productImage;
@@ -160,8 +158,5 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
       console.log("元のカウントは　"+count+"　です");
     };
-
   });
-  
-  //let backBtn = document.getElementById("backBtn");
 });

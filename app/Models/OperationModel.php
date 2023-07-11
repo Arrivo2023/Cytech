@@ -7,19 +7,29 @@ use Illuminate\Support\Facades\DB;
 
 class OperationModel extends Model
 {
+    //companiesテーブル取得
+    public function getCompaniesList()
+    {
+        $companiesLists = DB::table('companies')->get();
+
+        //\Log::debug($companiesLists);
+
+        return $companiesLists;
+    }
+
+    //productsテーブル取得・companiesテーブルと紐付け
     public function getList()
     {
         $products = DB::table('products')
             ->join('companies', 'company_id', '=', 'companies.id')
             ->select('products.*', 'companies.id as companies_id', 'companies.company_name');
-        //->get();
+
         return $products;
     }
 
+    //新規登録処理
     public function newRecord($data)
     {
-        \Log::debug($data->toArray());
-
         //商品画像を取得 -> 一意のID生成 -> 保存　・　DBにpathを登録
         $file = $data->file('file');
         $filePath = null;
@@ -38,43 +48,37 @@ class OperationModel extends Model
                 'price' => $data->price,
                 'stock' => $data->stock,
                 'comment' => $data->comment,
-                'img_path' => $filePath
+                'img_path' => $filePath,
             ]);
     }
 
+    //更新処理
     public function itemUpdate($data)
     {
-        \Log::debug($data->toArray());
+        //\Log::debug($data->toArray());
 
-        //商品画像を取得 -> 一意のID生成 -> 保存　・　DBにpathを登録
+        //ファイルデータを取得
         $file = $data->file('file');
         $filePath = null;
         $directory = 'storage/images';
+        $oldPath = DB::table('products')
+            ->where('id', $data->productId)
+            ->value('img_path');
+        \Log::debug($oldPath);
+
+        /*ファイルが送信されていれば、一意のIDを生成して$filePathにセット
+        $directoryにファイルを保存し、古いファイルを削除*/
+        //ファイルが送信されていなければ、現状のPathをセット
         if ($file) {
             $fileName = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move($directory, $fileName);
             $filePath = $directory.'/'.$fileName;
-            \Log::debug($fileName);
-        }else{
-            $beforeFilePath = DB::table('products')
-                ->where('id', $data->productId)
-                ->select('img_path')
-                ->get();
-            $filePath = $beforeFilePath;
-            \Log::debug($filePath);
-        }
-        \Log::debug($filePath);
-
-        //$filePath = 'storage/images/example.jpg'; // 削除するファイルのパス
-
-        /*if (file_exists($filePath)) {
-            unlink($filePath); // ファイルを削除
+            unlink($oldPath);
         } else {
-            // ファイルが存在しない場合の処理
-            echo "ファイルが存在しません。";
-        }*/
+            $filePath = $oldPath;
+        }
 
-        \Log::debug($data->productId);
+        //データベースの更新
         DB::table('products')
             ->where('id', $data->productId)
             ->update([
@@ -83,14 +87,23 @@ class OperationModel extends Model
                 'price' => $data->price,
                 'stock' => $data->stock,
                 'comment' => $data->comment,
-                'img_path' => $filePath
-                //'img_path' => $fileName
+                'img_path' => $filePath,
             ]);
     }
 
+    //削除
     public function itemDelete($data)
     {
-        //\Log::debug($data->toArray());
+        //先にstorage/imagesの画像ファイルを削除
+        $oldPath = DB::table('products')
+            ->where('id', $data->productId)
+            ->value('img_path');
+        \Log::debug($oldPath);
+
+        if (file_exists($oldPath)) {
+            unlink($oldPath);
+        }
+
         DB::table('products')
             ->where('id', $data->productId)
             ->delete();

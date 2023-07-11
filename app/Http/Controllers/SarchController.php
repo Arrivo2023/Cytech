@@ -2,29 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Companies;
 use App\Models\OperationModel;
 use Illuminate\Http\Request;
 
 class SarchController extends Controller
 {
+    ////一覧・検索処理
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
         $company = $request->input('companies');
 
-        /*$productId = $request->input('productId');
-    $productName = $request->input('productName');
-    $companyName = $request->input('companyName');
-    $productPrice = $request->input('productPrice');
-    $productStock = $request->input('stock');
-    $productComment = $request->input('comment');*/
-
-        $productsModel = new OperationModel();
-        $query = $productsModel->getList();
-
-        $companiesModel = new Companies();
-        $companies = $companiesModel->getCompaniesList();
+        $OperationModel = new OperationModel();
+        $query = $OperationModel->getList();
+        $companies = $OperationModel->getCompaniesList();
 
         if ($keyword && $company != '会社名') {
             $query->where('product_name', 'LIKE', "%$keyword%")
@@ -37,6 +28,5 @@ class SarchController extends Controller
         $products = $query->orderBy('products.id')->get();
 
         return view('sarch_index', compact('products', 'companies'));
-
     }
 }

@@ -85,7 +85,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!--<form action="">-->
                         <div class="left-item">
                             <div class="item-ditail id-label modal-label">
                                 <label id="idLabel">ID</label><br>
@@ -115,12 +114,10 @@
                                 <img src="" alt="" id="product-image" class="image-ditail">
                             </div>
                             <div class="item-ditail comment-label modal-label">
-															<label>コメント </label><br>
-															<textarea id="product-comment" readonly></textarea>
+                                <label>コメント </label><br>
+                                <textarea id="product-comment" readonly></textarea>
                             </div>
-													</div>
-                    <!--</form>-->
-
+                        </div>
 
                 </div>
                 <div class="modal-footer">
@@ -152,7 +149,6 @@
                             <div class="item-edit id-label modal-label">
                                 <label id="idLabel">ID</label><br>
                                 <input type="text" value="id" id="edit-id" name="productId" readonly>
-                                <span>あああああ</span>
                             </div>
                             <div class="item-edit product-label modal-label">
                                 <label>商品名</label><br>
@@ -162,16 +158,13 @@
                                 <label>メーカー名</label><br>
                                 <select id="edit-companyName" name="companyId" required>
                                     <option id="default-company" hidden disabled></option>
-																		@php
-																			$count = 1;
-																		@endphp
-                                    @foreach($companies as $company)
-																		
-                                        <option value="{{$company->id}}" placeholder="メーカー名" id="option{{$count++}}"
-																								>{{$company->company_name}}</option>
+                                    @php
+                                        $count = 1;
+                                    @endphp
+                                    @foreach($companies as $company)																		
+                                        <option value="{{$company->id}}" placeholder="メーカー名" id="option{{$count++}}">{{$company->company_name}}</option>
                                     @endforeach
                                 </select>
-
                             </div>
                             <div class="item-edit price-label modal-label">
                                 <label>価格</label><br>
@@ -198,7 +191,6 @@
                 <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" id="backBtn" data-bs-target="#detail-modal" data-bs-toggle="modal">戻る</button>
                 </div>
-                <!--</form>-->
             </div>
         </div>
     </div>
