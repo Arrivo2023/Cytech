@@ -29,7 +29,6 @@
     <div class="list-container">
         <button class="create-btn" id="create-btn" data-bs-toggle="modal" data-bs-target="#edit-modal">新規登録</button>
 
-
         <div class="item-list">
             <table class="item-list__table" id="item-list__table">
                 <tr>
