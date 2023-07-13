@@ -63,11 +63,11 @@
                                 詳細表示
                             </button>
 
-														<form action="{{route('itemDelete')}}" method="POST">
-														@csrf
-															<input type="hidden" value="{{ $product -> id}}" class="deleteId" name="productId">
-															<input type="submit" value="削除" class="delBtn">
-														</form>
+                            <form action="{{route('itemDelete')}}" method="POST">
+                            @csrf
+                                <input type="hidden" value="{{ $product -> id}}" class="deleteId" name="productId">
+                                <input type="submit" value="削除" class="delBtn">
+                            </form>
                         </td>
                     </tr>
                 @endforeach
@@ -167,11 +167,11 @@
                             </div>
                             <div class="item-edit price-label modal-label">
                                 <label>価格</label><br>
-                                <input type="text" placeholder="価格" value="" id="edit-productPrice" name="price">
+                                <input type="text" placeholder="価格" value="" id="edit-productPrice" name="price" required>
                             </div>
                             <div class="item-edit stock-label modal-label">
                                 <label>在庫数</label><br>
-                                <input type="text" placeholder="在庫数" value="" id="edit-productStock" name="stock">
+                                <input type="text" placeholder="在庫数" value="" id="edit-productStock" name="stock" required>
                             </div>
                         </div>
                         <div class="right-item">
