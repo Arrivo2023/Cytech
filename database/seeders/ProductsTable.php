@@ -17,11 +17,10 @@ class ProductsTable extends Seeder
         DB::table('products')->insert([
             [
                 'company_id' => '1',
-                'product_name' => '香ばしい六条麦茶',
+                'product_name' => '天然水',
                 'price' => '130',
                 'stock' => '300',
                 'comment' => 'test1',
-                'img_path' => 'public\dr-strange.jpeg',
             ],
             [
                 'company_id' => '2',
@@ -29,7 +28,6 @@ class ProductsTable extends Seeder
                 'price' => '160',
                 'stock' => '500',
                 'comment' => 'test2',
-                'img_path' => 'public\iron-man.jpeg',
             ],
         ]);
     }

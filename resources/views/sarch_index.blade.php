@@ -84,39 +84,39 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                        <div class="left-item">
-                            <div class="item-ditail id-label modal-label">
-                                <label id="idLabel">ID</label><br>
-                                <input id="product-id" readonly>
-                            </div>
-                            <div class="item-ditail product-label modal-label">
-                                <label>商品名</label><br>
-                                <input id="product-name" readonly>
-                            </div>
-                            <div class="item-ditail company-label modal-label">
-                                <label>メーカー</label><br>
-                                <input id="company-name" readonly>
-                            </div>
-                            <div class="item-ditail price-label modal-label">
-                                <label>価格</label><br>
-                                <input id="product-price" readonly>
-                            </div>
-                            <div class="item-ditail stock-label modal-label">
-                                <label>在庫数</label><br>
-                                <input id="product-stock" class="" readonly>
-                            </div>														
+                    <div class="left-item">
+                        <div class="item-ditail id-label modal-label">
+                            <label id="idLabel">ID</label><br>
+                            <input id="product-id" readonly>
                         </div>
+                        <div class="item-ditail product-label modal-label">
+                            <label>商品名</label><br>
+                            <input id="product-name" readonly>
+                        </div>
+                        <div class="item-ditail company-label modal-label">
+                            <label>メーカー</label><br>
+                            <input id="company-name" readonly>
+                        </div>
+                        <div class="item-ditail price-label modal-label">
+                            <label>価格</label><br>
+                            <input id="product-price" readonly>
+                        </div>
+                        <div class="item-ditail stock-label modal-label">
+                            <label>在庫数</label><br>
+                            <input id="product-stock" class="" readonly>
+                        </div>														
+                    </div>
 
-                        <div class="right-item">
-                            <div class="item-ditail image-label modal-label">
-                                <label>画像</label><br>
-                                <img src="" alt="" id="product-image" class="image-ditail">
-                            </div>
-                            <div class="item-ditail comment-label modal-label">
-                                <label>コメント </label><br>
-                                <textarea id="product-comment" readonly></textarea>
-                            </div>
+                    <div class="right-item">
+                        <div class="item-ditail image-label modal-label">
+                            <label>画像</label><br>
+                            <img src="" alt="" id="product-image" class="image-ditail">
                         </div>
+                        <div class="item-ditail comment-label modal-label">
+                            <label>コメント </label><br>
+                            <textarea id="product-comment" readonly></textarea>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
