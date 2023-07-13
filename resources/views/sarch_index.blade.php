@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <!--Modal-->
+    <!--Modal商品詳細画面-->
     <div class="modal fade detail-modal" id="detail-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -121,18 +121,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="backBtn" data-bs-dismiss="modal">戻る</button>
-                    <button type="button" class="btn btn-primary" data-bs-target="#edit-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="editBtn">
-                      編集
-                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-target="#edit-modal" data-bs-toggle="modal" data-bs-dismiss="modal" id="editBtn">編集</button>
                 </div>
-                <!--<div class="modal-footer">
-                  <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
-                </div>-->
             </div>
         </div>
     </div>
 
-    <!--２ページ目-->
+    <!--Modal商品編集・登録画面-->
     <div class="modal fade edit-modal" id="edit-modal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
