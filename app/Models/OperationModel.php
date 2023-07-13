@@ -18,12 +18,27 @@ class OperationModel extends Model
     }
 
     //productsテーブル取得・companiesテーブルと紐付け
-    public function getList()
+    //検索処理
+    public function getList($data)
     {
+        $keyword = $data->input('keyword');
+        $company = $data->input('companies');
+
         $products = DB::table('products')
             ->join('companies', 'company_id', '=', 'companies.id')
-            ->select('products.*', 'companies.id as companies_id', 'companies.company_name');
+            ->select('products.*', 'companies.id as companies_id', 'companies.company_name')
+            ->orderBy('products.id');
 
+            if ($keyword && $company != '会社名') {
+                $products->where('product_name', 'LIKE', "%$keyword%")
+                    ->where('companies.id', '=', "$company");
+            } elseif ($keyword) {
+                $products->where('product_name', 'LIKE', "%$keyword%");
+            } elseif ($company) {
+                $products->where('companies.id', '=', "$company");
+            }
+        $products = $products->get();
+        
         return $products;
     }
 
