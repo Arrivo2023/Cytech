@@ -9,25 +9,57 @@
     </div>
 
     <div class="search-container">
-        <form action="" method="GET">
+        <form action="{{ route('sarchList') }}" method="GET">
             <div class="search-container__title">
                 <h2>検索フォーム</h2>
             </div>
-            <div class="search-container__form">
-                <input type="text" placeholder="検索キーワード" name="keyword" id="text" class="text">
-                <select name="companies" id="companies">™
-                    <option hidden>会社名</option>
-                    @foreach($companies as $company)
-                        <option value="{{$company->id}}">{{$company->company_name}}</option>
-                    @endforeach
-                </select>
-                <input type="submit" value="検索" class="search-container__btn">
+            <div class="search-container_form">
+                <div class="search-container_main">
+                    <input type="text" placeholder="検索キーワード" name="keyword" id="text" class="text">
+                    <select name="companies" id="companies">™
+                        <option hidden>会社名</option>
+                        @foreach($companies as $company)
+                            <option value="{{$company->id}}">{{$company->company_name}}</option>
+                        @endforeach
+                    </select>                
+                </div>
+                <div class="search-container_sub">
+                    <div class="priceValue">
+                        <label for="">価格</label>
+                        <input type="text" placeholder="0" name="minPrice"  class="minPrice">
+                        <p>〜</p>
+                        <input type="text" placeholder="0" name="maxPrice"  class="maxPrice">
+                    </div>
+                    <div class="stockValue">
+                        <label for="">在庫</label>
+                        <input type="text" placeholder="0" name="minStock" class="minStock">
+                        <p>〜</p>
+                        <input type="text" placeholder="0" name="maxStock" class="maxStock">
+                    </div>
+                    <input type="submit" value="検索" class="searchBtn">
+                </div>
             </div>
         </form>
     </div>
 
     <div class="list-container">
         <button class="create-btn" id="create-btn" data-bs-toggle="modal" data-bs-target="#edit-modal">新規登録</button>
+
+        <div class="sort">
+            <label for="">並び替え</label>
+            <select name="sortValue" id="sortValue">
+                <option value="0">ID</option>
+                <option value="2">商品名</option>
+                <option value="3">価格</option>
+                <option value="4">在庫数</option>
+                <option value="5">メーカー名</option>
+            </select>
+            
+            <select name="sortFormat" id="sortFormat">
+                <option value="0">降順</option>
+                <option value="1">昇順</option>
+            </select>
+        </div>
 
         <div class="item-list">
             <table class="item-list__table" id="item-list__table">
@@ -46,13 +78,13 @@
 
                 @foreach ($products as $product)
 
-                    <tr>
-                        <td id="productId" class="item-list__table--id">{{ $product -> id }}</td>
-                        <td id="productImage" class="item-list__table--image"><img src="{{ asset($product -> img_path) }}"/></td>
-                        <td id="productName" class="item-list__table--name">{{ $product -> product_name }}</td>
-                        <td id="productPrice" class="item-list__table--price">{{ $product -> price }}</td>
-                        <td id="productStock" class="item-list__table--stock">{{ $product -> stock }}</td>
-                        <td id="companyName" class="item-list__company--name" 
+                    <tr class="tableItems">
+                        <td class="item-list__table--id productsId">{{ $product -> id }}</td>
+                        <td class="item-list__table--image"><img src="{{ asset($product -> img_path) }}"/></td>
+                        <td class="item-list__table--name productsName">{{ $product -> product_name }}</td>
+                        <td class="item-list__table--price price">{{ $product -> price }}</td>
+                        <td class="item-list__table--stock stock">{{ $product -> stock }}</td>
+                        <td class="item-list__company--name" 
 												data-value="{{$product -> companies_id}}">{{ $product -> company_name }}</td>
                         <td id="productComment" class="item-list__comment">{{ $product -> comment }}</td>
                         <td class="item-list__table--btn">
@@ -188,7 +220,6 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Open first modal</a>
 @endsection
 @section('scripts')
     <script src="{{ asset('../resources/js/main.js') }}"></script>

@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 //Route::get('/', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
 Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('index');
-Route::post('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'])->name('sarch');
+Route::get('/sarch', [App\Http\Controllers\SarchController::class, 'sarchList'])->name('sarchList');
 
 Route::post('/newRecord', [App\Http\Controllers\OperationController::class, 'newRecord'])->name('newRecord');
 Route::post('/update', [App\Http\Controllers\OperationController::class, 'update'])->name('update');

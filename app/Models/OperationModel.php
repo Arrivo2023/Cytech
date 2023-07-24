@@ -17,26 +17,61 @@ class OperationModel extends Model
         return $companiesLists;
     }
 
+
+
+    public function getList(){
+        $products = DB::table('products')
+        ->join('companies', 'company_id', '=', 'companies.id')
+        ->select('products.*', 'companies.id as companies_id', 'companies.company_name')
+        ->orderBy('products.id')
+        ->get();
+        return $products;
+    }
+
+
+
     //productsテーブル取得・companiesテーブルと紐付け
     //検索処理
-    public function getList($data)
+    public function sarchList($data)
     {
+        //\Log::debug($data->toArray());
         $keyword = $data->input('keyword');
         $company = $data->input('companies');
-
+        $minPrice = $data->input('minPrice');
+        $maxPrice = $data->input('maxPrice');
+        $minStock = $data->input('minStock');
+        $maxStock = $data->input('maxStock');
+        
         $products = DB::table('products')
-            ->join('companies', 'company_id', '=', 'companies.id')
-            ->select('products.*', 'companies.id as companies_id', 'companies.company_name')
-            ->orderBy('products.id');
-
-            if ($keyword && $company != '会社名') {
-                $products->where('product_name', 'LIKE', "%$keyword%")
-                    ->where('companies.id', '=', "$company");
-            } elseif ($keyword) {
-                $products->where('product_name', 'LIKE', "%$keyword%");
-            } elseif ($company) {
-                $products->where('companies.id', '=', "$company");
-            }
+        ->join('companies', 'company_id', '=', 'companies.id')
+        ->select('products.*', 'companies.id as companies_id', 'companies.company_name')
+        ->orderBy('products.id');
+        
+        if ($keyword && $company != '会社名') {
+            $products->where('product_name', 'LIKE', "%$keyword%")
+            ->where('companies.id', '=', "$company");
+        } elseif ($keyword) {
+            $products->where('product_name', 'LIKE', "%$keyword%");
+        } elseif ($company != '会社名') {
+            $products->where('companies.id', '=', "$company");
+        }
+        
+        if($minPrice && $maxPrice){
+            $products->whereBetween('price', [$minPrice, $maxPrice]);
+        }elseif($minPrice){
+            $products->where('price', '>=', $minPrice);
+        }elseif($maxPrice){
+            $products->where('price', '<=', $maxPrice);
+        }
+        
+        if($minStock && $maxStock){
+            $products->whereBetween('stock', [$minStock, $maxStock]);
+        }elseif($minStock){
+            $products->where('stock', '>=', $minStock);
+        }elseif($maxStock){
+            $products->where('stock', '<=', $maxStock);
+        }
+        
         $products = $products->get();
         
         return $products;
