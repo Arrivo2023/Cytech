@@ -7,20 +7,32 @@
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "storage/table_data.json"
+    url: "Controllers/SarchController.php"
   })
   .done((data) => {
     console.log("sucsses", data);
     //content = data;
+    console.log(data.result);
 
     const group = $('.group').val();
     console.log("select group", group);
-    const list = data[group]
-    console.log("select member", list);
+    const lists = data[group]
+    console.log("select member", lists);
+    listLength = lists.length-1;
+    console.log(listLength);
+    console.log(JSON.stringify(lists.name));
 
-    list.map(member => {
-      $('#member-list').append('<li/>').text(`名前: ${member.name} 年齢: ${member.age}`);
+    Object.entries(lists).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
     });
+
+    /*for(let i=0; i<listLength; i++){
+      console.log(`名前: ${list.member.name} 年齢: ${list.member.age}`);
+    }*/
+
+    /*list.map(member => {
+      $('#member-list').append('<li/>').text(`名前: ${member.name} 年齢: ${member.age}`);
+    });*/
     //$('#testjson').text(JSON.stringify(data));
     //console.log("testjson", $('#testjson'))
   })
