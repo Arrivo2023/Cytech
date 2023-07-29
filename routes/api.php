@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'apiIndex'])->name('index');
+Route::get('/sarch', [App\Http\Controllers\SarchController::class, 'sarchList'])->name('sarchList');
+

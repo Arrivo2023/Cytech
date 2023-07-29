@@ -14,11 +14,18 @@ class SarchController extends Controller
         $products = $OperationModel->getList();
         $companies = $OperationModel->getCompaniesList();
 
+        return view('sarch_index', compact('products', 'companies'));
+    }
+    
+    public function apiIndex()
+    {
+        $OperationModel = new OperationModel();
+        $products = $OperationModel->getList();
+        $companies = $OperationModel->getCompaniesList();
+
         return response()->json([
             'result' => $products
         ]);
-
-        //return view('sarch_index', compact('products', 'companies'));
     }
 
 

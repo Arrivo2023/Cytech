@@ -7,12 +7,12 @@
   $.ajax({
     type: "GET",
     dataType: "json",
-    url: "Controllers/SarchController.php"
+    url: "/cytech/public/sarch_index"
   })
   .done((data) => {
     console.log("sucsses", data);
     //content = data;
-    //console.log(data.result);
+    console.log(data.result);
 
     const group = $('.group').val();
     console.log("select group", group);
@@ -26,15 +26,7 @@
       console.log(`${key}: ${value}`);
     });
 
-    /*for(let i=0; i<listLength; i++){
-      console.log(`名前: ${list.member.name} 年齢: ${list.member.age}`);
-    }*/
-
-    /*list.map(member => {
-      $('#member-list').append('<li/>').text(`名前: ${member.name} 年齢: ${member.age}`);
-    });*/
-    //$('#testjson').text(JSON.stringify(data));
-    //console.log("testjson", $('#testjson'))
+    
   })
   .fail((error) => {
     console.log("fail", error.status, error.statusText, error);
