@@ -12,7 +12,7 @@
   .done((data) => {
     console.log("sucsses", data);
     //content = data;
-    console.log(data.result);
+    //console.log(data.result);
 
     const group = $('.group').val();
     console.log("select group", group);
