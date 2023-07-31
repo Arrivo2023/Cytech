@@ -91,7 +91,8 @@
                         <!--削除-->
                     </th>
                 </tr>
-                
+               
+                <!--
                 @foreach ($products as $product)
                 
                 <tr class="tableItems">
@@ -107,7 +108,7 @@
                         
                         <!--<button>詳細表示</button>-->
                         <!-- Button trigger modal -->
-                        <button type="button" id="infoBtn" class="btn btn-primary infoBtn" data-bs-toggle="modal" data-bs-target="#detail-modal">
+                       <!-- <button type="button" id="infoBtn" class="btn btn-primary infoBtn" data-bs-toggle="modal" data-bs-target="#detail-modal">
                             詳細表示
                         </button>
                         
@@ -118,7 +119,7 @@
                         </form>
                     </td>
                 </tr>
-                @endforeach
+                @endforeach -->
             </table>
         </div>
     </div>

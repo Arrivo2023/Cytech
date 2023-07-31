@@ -5,16 +5,18 @@
   $('.group').change(() => {
 
   $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     type: "GET",
-    dataType: "json",
-    url: "/cytech/public/sarch_index"
-  })
-  .done((data) => {
+    url: "/ajax_index",
+    dataType: "json"
+  }).done(function(data) {
     console.log("sucsses", data);
     //content = data;
-    console.log(data.result);
+    //console.log(data.result);
 
-    const group = $('.group').val();
+   /* const group = $('.group').val();
     console.log("select group", group);
     const lists = data[group]
     console.log("select member", lists);
@@ -24,14 +26,13 @@
 
     Object.entries(lists).forEach(([key, value]) => {
       console.log(`${key}: ${value}`);
-    });
+    });*/
 
     
-  })
-  .fail((error) => {
+  }).fail(function(data) {
     console.log("fail", error.status, error.statusText, error);
-    const errorMessage = `${error.status} ${error.statusText}`
-    $('#error').text(errorMessage);
+    //const errorMessage = `${error.status} ${error.statusText}`
+    //$('#error').text(errorMessage);
   })
   .always(() => {
     console.log("ajax complete");
@@ -48,3 +49,22 @@
   list.map(member => {
     $('#member-list').append('<li/>').text(`名前: ${member.name} 年齢: ${member.age}`);
   });*/
+
+  // Ajaxリクエストの送信
+  /*$.ajax({
+    url: "/ajax_index",
+    method: "GET",
+    data: {
+        // リクエストに含めるデータを指定する（必要に応じて）
+        key: "value"
+    },
+    dataType: "json",
+    success: function(response) {
+        // 成功時の処理
+        console.log("成功！！");
+    },
+    error: function(xhr, status, error) {
+        // エラー時の処理
+        console.log("失敗");
+    }
+});*/
