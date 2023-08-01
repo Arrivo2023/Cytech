@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'ajaxIndex'])->name('ajax_index');
-Route::get('/sarch', [App\Http\Controllers\SarchController::class, 'sarchList'])->name('sarchList');
+//Route::get('/ajax_index', [App\Http\Controllers\SarchController::class, 'ajaxIndex'])->name('ajax_index');
+//Route::get('/sarch', [App\Http\Controllers\SarchController::class, 'sarchList'])->name('sarchList');
 

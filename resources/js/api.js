@@ -3,8 +3,33 @@
 
 
   $('.group').change(() => {
+    console.log("変更されました");
 
-  $.ajax({
+    $.ajax({
+      url: "ajax_index",
+      type: "GET",
+      dataType: "json",
+  
+      //通信状態に問題がないかどうか
+      success: function(data) {
+  
+        console.log("成功！！");
+        console.log(data.result);
+          //データ取得処理を書く
+  
+      },
+      //通信エラーになった場合の処理
+      error: function(err) {
+  
+        console.log("失敗");
+        console.log(err);
+          //エラー処理を書く
+  
+      }
+  });
+});
+
+  /*$.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
@@ -14,7 +39,7 @@
   }).done(function(data) {
     console.log("sucsses", data);
     //content = data;
-    //console.log(data.result);
+    //console.log(data.result);*/
 
    /* const group = $('.group').val();
     console.log("select group", group);
@@ -29,16 +54,15 @@
     });*/
 
     
-  }).fail(function(data) {
+  /*}).fail(function(data) {
     console.log("fail", error.status, error.statusText, error);
     //const errorMessage = `${error.status} ${error.statusText}`
     //$('#error').text(errorMessage);
   })
   .always(() => {
     console.log("ajax complete");
-  });
+  });*/
 
-});
 
 
   /*const group = $('.group').val();

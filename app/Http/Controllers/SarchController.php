@@ -19,7 +19,6 @@ class SarchController extends Controller
     
     public function ajaxIndex()
     {
-        dd("test");
         $OperationModel = new OperationModel();
         $products = $OperationModel->getList();
         $companies = $OperationModel->getCompaniesList();
