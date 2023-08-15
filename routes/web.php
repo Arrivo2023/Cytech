@@ -22,11 +22,13 @@ Route::get('/sarch_index', [App\Http\Controllers\SarchController::class, 'index'
 
 Route::get('/ajax_index', [App\Http\Controllers\SarchController::class, 'ajaxIndex'])->name('ajax_index');
 
+
 Route::get('/sarch', [App\Http\Controllers\SarchController::class, 'sarchList'])->name('sarchList');
 
 Route::post('/newRecord', [App\Http\Controllers\OperationController::class, 'newRecord'])->name('newRecord');
 Route::post('/update', [App\Http\Controllers\OperationController::class, 'update'])->name('update');
 Route::post('/itemDelete', [App\Http\Controllers\OperationController::class, 'itemDelete'])->name('itemDelete');
+//Route::post('/destroy', [App\Http\Controllers\OperationController::class, 'destroy'])->name('destroy');
 
 /*
 ログイン・ログアウトに関連するルートを設定。

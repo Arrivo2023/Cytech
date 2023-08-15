@@ -22,29 +22,29 @@ document.addEventListener("DOMContentLoaded", function() {
       const aValue = a.cells[sortColumn].textContent.trim();
       const bValue = b.cells[sortColumn].textContent.trim();
       
-    if (sortOrder === 1) {
-      return aValue.localeCompare(bValue, undefined, { numeric: true });
-    } else {
-      return bValue.localeCompare(aValue, undefined, { numeric: true });
-    }
-  });
+      if (sortOrder === 1) {
+        return aValue.localeCompare(bValue, undefined, { numeric: true });
+      } else {
+        return bValue.localeCompare(aValue, undefined, { numeric: true });
+      }
+    });
 
-  // ソートされた行を一旦別の場所に移動させる
-  const fragment = document.createDocumentFragment();
-  sortedRows.forEach((row) => {
-    fragment.appendChild(row);
-  });
+    // ソートされた行を一旦別の場所に移動させる
+    const fragment = document.createDocumentFragment();
+    sortedRows.forEach((row) => {
+      fragment.appendChild(row);
+    });
 
-  // テーブルの子要素をすべて削除して、ソート済みの行を追加する
-  table.querySelector('tbody').appendChild(fragment);
-}
+    // テーブルの子要素をすべて削除して、ソート済みの行を追加する
+    table.querySelector('tbody').appendChild(fragment);
+  }
 
-// 初期表示時にソートを実行
-sortTable();
+  // 初期表示時にソートを実行
+  sortTable();
 
-// select要素が変更された時にソートを実行
-document.getElementById('sortValue').addEventListener('change', sortTable);
-document.getElementById('sortFormat').addEventListener('change', sortTable);
+  // select要素が変更された時にソートを実行
+  document.getElementById('sortValue').addEventListener('change', sortTable);
+  document.getElementById('sortFormat').addEventListener('change', sortTable);
 
   // ボタン要素を取得
   let buttons = document.getElementsByClassName("infoBtn");

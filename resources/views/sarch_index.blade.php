@@ -72,26 +72,32 @@
             </select>
             
             <select name="sortFormat" id="sortFormat">
-                <option value="0">降順</option>
-                <option value="1">昇順</option>
+                <option value="0">昇順</option>
+                <option value="1">降順</option>
             </select>
         </div>
         
         <div class="item-list">
             <table class="item-list__table" id="item-list__table">
-                <tr>
-                    <th class="item-list__table--id">ID</th>
-                    <th class="item-list__table--image">商品画像</th>
-                    <th class="item-list__table--name">商品名</th>
-                    <th class="item-list__table--price">価格</th>
-                    <th class="item-list__table--stock">在庫数</th>
-                    <th>メーカー名</th>
-                    <th class="item-list__table--btn">
-                        <!--詳細表示-->
-                        <!--削除-->
-                    </th>
-                </tr>
-               
+                <thead>
+                    <tr>
+                        <th class="item-list__table--id">ID</th>
+                        <th class="item-list__table--image">商品画像</th>
+                        <th class="item-list__table--name">商品名</th>
+                        <th class="item-list__table--price">価格</th>
+                        <th class="item-list__table--stock">在庫数</th>
+                        <th>メーカー名</th>
+                        <th class="item-list__table--btn">
+                            <!--詳細表示-->
+                            <!--削除-->
+                        </th>
+                    </tr>
+                </thead>
+
+               <tbody id="list-body" data-routeName="{{route('itemDelete')}}"></tbody>
+
+                <!--<tr class="tableItems"></tr>-->
+
                 <!--
                 @foreach ($products as $product)
                 
@@ -104,7 +110,7 @@
                     <td class="item-list__company--name" 
                     data-value="{{$product -> companies_id}}">{{ $product -> company_name }}</td>
                     <td id="productComment" class="item-list__comment">{{ $product -> comment }}</td>
-                    <td class="item-list__table--btn">
+                    <td class="item-list__table--btn">-->
                         
                         <!--<button>詳細表示</button>-->
                         <!-- Button trigger modal -->
@@ -239,6 +245,6 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('../resources/js/main.js') }}"></script>
+<!--<script src="{{ asset('../resources/js/main.js') }}"></script>-->
 <script src="{{ asset('../resources/js/api.js') }}"></script>
 @endsection
