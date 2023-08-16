@@ -62,29 +62,4 @@ class OperationController extends Controller
 
         return redirect(route('index'));
     }
-    
-    
-    public function ajaxitemDelete(Request $request)
-    {
-        DB::beginTransaction();
-
-        try {
-            $model = new OperationModel();
-            $model->itemDelete($request);
-            DB::commit();
-        } catch (\Exception $e) {
-            \Log::debug($e->getMessage());
-            DB::rollback();
-
-            return back();
-        }
-
-        return redirect(route('index'));
-    }
-
-    public function destroy(Request $request, User $user) {
-        $user = User::findOrFail($request->id);
-        $user->delete();
-    }
-    
 }

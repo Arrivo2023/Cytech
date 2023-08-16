@@ -27,10 +27,10 @@ async function tableList(){
       stock = value.stock;
       company_name = value.company_name; 
   
-      console.log(id,img_path,product_name,price,stock,company_name);
+      //console.log(id,img_path,product_name,price,stock,company_name);
   
       let getRoute = $('#list-body').attr('data-routeName');
-      console.log(getRoute, " : test");
+      //console.log(getRoute, " : test");
   
   
       let form = $('<form>')
@@ -46,8 +46,15 @@ async function tableList(){
         'value': csrfToken
       });
   
+      let deleteId = $('<input>')
+      .attr({
+        'type': 'hidden',
+        'value': id,
+        'class': 'deleteId',
+        'name': 'productId'
+      });
   
-      let input = $('<input>')
+      let delBtn = $('<input>')
       .attr({
         'class': 'delBtn',
         'type': 'submit',
@@ -67,7 +74,7 @@ async function tableList(){
             'data-bs-toggle': 'modal',
             'data-bs-target': '#detail-modal'
         }),
-        form.append(csrfInput,input));
+        form.append(csrfInput,deleteId,delBtn));
         
         
 
@@ -127,8 +134,7 @@ async function tableList(){
     
       let count = 0;
     
-      console.log("buttons.length", buttons.length);
-      console.log(buttons);
+      //console.log("buttons.length", buttons.length);
       //for文で詳細ボタンの数だけ繰り返し処理
       for (let i = 0; i < buttons.length; i++) {
         // 各ボタンにクリックイベントを追加
@@ -323,3 +329,100 @@ operation();
 document.getElementById('sortValue').addEventListener('change', sortTable);
 document.getElementById('sortFormat').addEventListener('change', sortTable);
 
+async function sarchResult(){
+
+  try{
+
+    const response = await fetch("sarch");
+    const data = await response.json();
+    console.log(data);
+    
+    let item = data.result;
+  
+    $.each(item, function(key, value){
+      //nullの変数に値セット
+      id = value.id;
+      img_path = value.img_path;
+      product_name = value.product_name;
+      price = value.price;
+      stock = value.stock;
+      company_name = value.company_name; 
+  
+      //console.log(id,img_path,product_name,price,stock,company_name);
+  
+      let getRoute = $('#list-body').attr('data-routeName');
+      //console.log(getRoute, " : test");
+  
+  
+      let form = $('<form>')
+      .attr({
+        'action': getRoute,
+        'method': 'POST'
+      });
+  
+      // CSRFトークンを含むhidden要素を生成
+      const csrfInput = $('<input>', {
+        'type': 'hidden',
+        'name': '_token',
+        'value': csrfToken
+      });
+  
+      let deleteId = $('<input>')
+      .attr({
+        'type': 'hidden',
+        'value': id,
+        'class': 'deleteId',
+        'name': 'productId'
+      });
+  
+      let delBtn = $('<input>')
+      .attr({
+        'class': 'delBtn',
+        'type': 'submit',
+        'value': '削除'
+      });
+  
+  
+      //let buttons = $('<button>').text('詳細表示')
+      let attribute = $('<td>').attr({
+        'class': 'button-items'
+        }).append(
+          $('<button>').text('詳細表示')
+          .attr({
+            'type': 'button', // クラス属性を追加
+            //'id': 'infoBtn', // data-id属性を追加
+            'class': 'btn btn-primary infoBtn', // data-type属性を追加
+            'data-bs-toggle': 'modal',
+            'data-bs-target': '#detail-modal'
+        }),
+        form.append(csrfInput,deleteId,delBtn));
+        
+        
+
+      let image = $('<td>').append($('<img>').attr('src', img_path));
+  
+      let newRow = $('<tr>').attr({'class': 'tableItems'}).append(
+        $('<td>').attr({'class': 'productsId'}).text(id),
+        image,
+        $('<td>').text(product_name),
+        $('<td>').text(price),
+        $('<td>').text(stock),
+        $('<td>').text(company_name),
+        attribute
+      );
+
+      
+      $('tbody').append(newRow);
+      //$('.button-items').append($('<button>').text('削除'));
+    })
+  } catch(errorCount) {
+    console.log(errorCount);
+  } finally {
+    console.log("テーブルの非同期表示処理完了");
+  }
+}
+sarchResult();
+
+/*$('.sarchBtn').on('click', function(){
+  sarchResult();
+});*/

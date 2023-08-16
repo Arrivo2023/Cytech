@@ -7,22 +7,6 @@
     <div class="title">
         <h1><a href="{{ route('index') }}">商品一覧画面</a></h1>
     </div>
-
-    <div>
-        <p id="testjson"></p>
-    </div>
-    <div>
-        <p id="error"></p>
-    </div>
-    <select name="" class="group">
-        <option hidden>選択してください</option>
-        <option value="groupA">グループA</option>
-        <option value="groupB">グループB</option>
-        <option value="groupC">グループC</option>
-    </select>
-    <div>
-        <ul id="member-list"></ul>
-    </div>
     
     <div class="search-container">
         <form action="{{ route('sarchList') }}" method="GET">
@@ -52,7 +36,7 @@
                         <p>〜</p>
                         <input type="text" placeholder="0" name="maxStock" class="maxStock">
                     </div>
-                    <input type="submit" value="検索" class="searchBtn">
+                    <input type="submit" value="検索" class="sarchBtn">
                 </div>
             </div>
         </form>

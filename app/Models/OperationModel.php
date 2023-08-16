@@ -123,7 +123,9 @@ class OperationModel extends Model
             $fileName = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move($directory, $fileName);
             $filePath = $directory.'/'.$fileName;
-            //unlink($oldPath);
+            if($oldPath){
+                unlink($oldPath);
+            }
         } else {
             $filePath = $oldPath;
         }
