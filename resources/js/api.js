@@ -76,7 +76,6 @@ async function tableList(){
         }),
         form.append(csrfInput,deleteId,delBtn));
         
-        
 
       let image = $('<td>').append($('<img>').attr('src', img_path));
   
