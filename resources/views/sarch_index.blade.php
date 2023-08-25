@@ -7,9 +7,16 @@
     <div class="title">
         <h1><a href="{{ route('index') }}">商品一覧画面</a></h1>
     </div>
+
+    <div>
+        <button id=testSarchBtn style="width: 100px; height:50px;"></button>
+    </div>
+    <div>
+        <button id=testSarchBtn2 style="width: 100px; height:50px;"></button>
+    </div>
     
     <div class="search-container">
-        <form action="{{ route('sarchList') }}" method="GET">
+        <form id="sarchForm" action="{{ route('sarchList') }}" method="GET">
             <div class="search-container__title">
                 <h2>検索フォーム</h2>
             </div>
@@ -26,15 +33,15 @@
                 <div class="search-container_sub">
                     <div class="priceValue">
                         <label for="">価格</label>
-                        <input type="text" placeholder="0" name="minPrice"  class="minPrice">
+                        <input type="text" placeholder="0" name="minPrice"  id="minPrice">
                         <p>〜</p>
-                        <input type="text" placeholder="0" name="maxPrice"  class="maxPrice">
+                        <input type="text" placeholder="0" name="maxPrice"  id="maxPrice">
                     </div>
                     <div class="stockValue">
                         <label for="">在庫</label>
-                        <input type="text" placeholder="0" name="minStock" class="minStock">
+                        <input type="text" placeholder="0" name="minStock" id="minStock">
                         <p>〜</p>
-                        <input type="text" placeholder="0" name="maxStock" class="maxStock">
+                        <input type="text" placeholder="0" name="maxStock" id="maxStock">
                     </div>
                     <input type="submit" value="検索" class="sarchBtn">
                 </div>

@@ -5,7 +5,96 @@ let img_path = null;
 let product_name = null;
 let price = null;
 let stock = null;
-let company_name = null;  
+let company_name = null;
+
+let arrayData = [];
+let arrayDataCopy = [];
+
+//コピー関数
+function copyData(src) {
+  return JSON.parse(JSON.stringify(src));
+}
+
+//テーブルリスト作成関数
+function createTableList($item){
+  $.each($item, function(key, value){
+    //nullの変数に値セット
+    id = value.id;
+    img_path = value.img_path;
+    product_name = value.product_name;
+    price = value.price;
+    stock = value.stock;
+    company_name = value.company_name; 
+
+    //console.log(id,img_path,product_name,price,stock,company_name);
+
+    let getRoute = $('#list-body').attr('data-routeName');
+    //console.log(getRoute, " : test");
+
+
+    let form = $('<form>')
+    .attr({
+      'action': getRoute,
+      'method': 'POST'
+    });
+
+    // CSRFトークンを含むhidden要素を生成
+    const csrfInput = $('<input>', {
+      'type': 'hidden',
+      'name': '_token',
+      'value': csrfToken
+    });
+
+    let deleteId = $('<input>')
+    .attr({
+      'type': 'hidden',
+      'value': id,
+      'class': 'deleteId',
+      'name': 'productId'
+    });
+
+    let delBtn = $('<input>')
+    .attr({
+      'class': 'delBtn',
+      'type': 'submit',
+      'value': '削除'
+    });
+
+
+    //let buttons = $('<button>').text('詳細表示')
+    let attribute = $('<td>').attr({
+      'class': 'button-items'
+      }).append(
+        $('<button>').text('詳細表示')
+        .attr({
+          'type': 'button', // クラス属性を追加
+          //'id': 'infoBtn', // data-id属性を追加
+          'class': 'btn btn-primary infoBtn', // data-type属性を追加
+          'data-bs-toggle': 'modal',
+          'data-bs-target': '#detail-modal'
+      }),
+      form.append(csrfInput,deleteId,delBtn));
+      
+
+    let image = $('<td>').append($('<img>').attr('src', img_path));
+
+    let newRow = $('<tr>').attr({'class': 'tableItems','data-index': id}).append(
+      $('<td>').attr({'class': 'productsId'}).text(id),
+      image,
+      $('<td>').attr({'class': 'product_name'}).text(product_name),
+      $('<td>').attr({'class': 'price'}).text(price),
+      $('<td>').attr({'class': 'stock'}).text(stock),
+      $('<td>').attr({'class': 'company_name'}).text(company_name),
+      attribute
+    );
+
+    
+    $('tbody').append(newRow);
+    //$('.button-items').append($('<button>').text('削除'));
+  }) 
+}
+//ここまでテーブルリスト作成関数
+
 
 async function tableList(){
 
@@ -14,91 +103,25 @@ async function tableList(){
     const response = await fetch("ajax_index");
     const data = await response.json();
     
-    console.log(data);
+    console.log("data",data);
+
+    arrayData.push(data);
+    //arrayDataCopy.push(data);
+    
+    // データをコピーして arrayDataCopy に代入
+    arrayDataCopy = copyData(arrayData);
+
+    console.log("配列データ",arrayData);
+    console.log(arrayData[0].result);
     
     let item = data.result;
-  
-    $.each(item, function(key, value){
-      //nullの変数に値セット
-      id = value.id;
-      img_path = value.img_path;
-      product_name = value.product_name;
-      price = value.price;
-      stock = value.stock;
-      company_name = value.company_name; 
-  
-      //console.log(id,img_path,product_name,price,stock,company_name);
-  
-      let getRoute = $('#list-body').attr('data-routeName');
-      //console.log(getRoute, " : test");
-  
-  
-      let form = $('<form>')
-      .attr({
-        'action': getRoute,
-        'method': 'POST'
-      });
-  
-      // CSRFトークンを含むhidden要素を生成
-      const csrfInput = $('<input>', {
-        'type': 'hidden',
-        'name': '_token',
-        'value': csrfToken
-      });
-  
-      let deleteId = $('<input>')
-      .attr({
-        'type': 'hidden',
-        'value': id,
-        'class': 'deleteId',
-        'name': 'productId'
-      });
-  
-      let delBtn = $('<input>')
-      .attr({
-        'class': 'delBtn',
-        'type': 'submit',
-        'value': '削除'
-      });
-  
-  
-      //let buttons = $('<button>').text('詳細表示')
-      let attribute = $('<td>').attr({
-        'class': 'button-items'
-        }).append(
-          $('<button>').text('詳細表示')
-          .attr({
-            'type': 'button', // クラス属性を追加
-            //'id': 'infoBtn', // data-id属性を追加
-            'class': 'btn btn-primary infoBtn', // data-type属性を追加
-            'data-bs-toggle': 'modal',
-            'data-bs-target': '#detail-modal'
-        }),
-        form.append(csrfInput,deleteId,delBtn));
-        
 
-      let image = $('<td>').append($('<img>').attr('src', img_path));
-  
-      let newRow = $('<tr>').attr({'class': 'tableItems'}).append(
-        $('<td>').attr({'class': 'productsId'}).text(id),
-        image,
-        $('<td>').text(product_name),
-        $('<td>').text(price),
-        $('<td>').text(stock),
-        $('<td>').text(company_name),
-        attribute
-      );
-
-      
-      $('tbody').append(newRow);
-      //$('.button-items').append($('<button>').text('削除'));
-    })  
+    createTableList(arrayData[0].result);
 
     //--------------------------------------
 
-      let productsId = document.getElementsByClassName('productsId');
-      let productsName = document.getElementsByClassName('productsName');
-    
+      //let productsId = document.getElementsByClassName('productsId');
+      //let productsName = document.getElementsByClassName('productsName');
     
       // ソートを実行する関数
       
@@ -328,10 +351,19 @@ operation();
 document.getElementById('sortValue').addEventListener('change', sortTable);
 document.getElementById('sortFormat').addEventListener('change', sortTable);
 
-async function sarchResult(){
+/*async function sarchResult(){
 
   try{
 
+    id = $('productsId');
+    img_path = null;
+    product_name = null;
+    price = null;
+    stock = null;
+    company_name = null; 
+
+//-------------------------------------------------------------
+    
     const response = await fetch("sarch");
     const data = await response.json();
     console.log(data);
@@ -420,8 +452,207 @@ async function sarchResult(){
     console.log("テーブルの非同期表示処理完了");
   }
 }
-sarchResult();
+sarchResult();*/
 
-/*$('.sarchBtn').on('click', function(){
-  sarchResult();
+
+//-------------------------------------------------
+
+/*$('#testSarchBtn').on("click", function(){
+  console.log("クリックイベント配列",arrayDataCopy[0]);
+
+  // テーブルのリストを取得
+  //$('.tableItems').remove();
+
+  // 既存の <td> 要素を削除
+
+  //let keyToDelete = '1';
+
+// 特定のキーを持つ要素を削除
+  //delete arrayDataCopy[0].result[1];
+
+  
+
+
+
+  //特定のindex番号を持ったtr列を非表示
+$('.tableItems[data-index="12"]').hide()
+
+console.log("arrayData",arrayData[0]);
+console.log("arrayDataCopy",arrayDataCopy[0]);
+
+//createTableList(arrayDataCopy[0].result);
+
 });*/
+
+/*$('#testSarchBtn2').on("click", function(){
+  console.log("クリックイベント配列",arrayDataCopy[0]);
+
+  // テーブルのリストを取得
+  //$('.tableItems').remove();
+
+  // 既存の <td> 要素を削除
+
+  //let keyToDelete = '1';
+
+// 特定のキーを持つ要素を削除
+  //delete arrayDataCopy[0].result[1];
+
+  //特定のindex番号を持ったtr列を非表示
+$('.tableItems[data-index="12"]').show()
+
+console.log("arrayData",arrayData[0]);
+console.log("arrayDataCopy",arrayDataCopy[0]);
+
+//createTableList(arrayData[0].result);
+
+})*/
+
+
+// フォームの送信イベントを設定
+$('#sarchForm').submit(function(event) {
+  event.preventDefault(); // デフォルトのフォーム送信をキャンセル
+
+  // フォームの値を取得
+  let textValue = $('#text').val();
+  let companyValue = $('#companies').val();
+  let minPrice = $('#minPrice').val();
+  let maxPrice = $('#maxPrice').val();
+  let minStock = $('#minStock').val();
+  let maxStock = $('#maxStock').val();
+
+  // 取得した値を非同期処理に渡す
+  performAsyncOperation(
+    textValue,
+    companyValue,
+    minPrice,
+    maxPrice,
+    minStock,
+    maxStock);
+});
+
+// 非同期処理を行う関数
+function performAsyncOperation(
+  textValue,
+  companyValue,
+  minPrice,
+  maxPrice,
+  minStock,
+  maxStock) {
+  // ここで非同期処理を実行する
+  // 例えば、fetch() などを使用してサーバーにデータを送信し、結果を取得するなど
+  console.log('Received value:', 
+  textValue,
+  companyValue,
+  minPrice,
+  maxPrice,
+  minStock,
+  maxStock);
+  //console.log(arrayData[0]);
+  console.log("companyValue",companyValue);
+
+  // テーブルの各行をループして、条件に基づいて列を表示/非表示にする
+  $("#item-list__table tbody tr").each(function() {
+    let rowProduct_name = ($(this).find(".product_name").text());
+    let rowCompany_name = ($(this).find(".company_name").text());
+    let rowPrice = parseInt($(this).find(".price").text());
+    let rowStock = parseInt($(this).find(".stock").text());
+    console.log(rowProduct_name) // 行内のminPriceの値を取得
+    console.log(rowCompany_name) // 行内のminPriceの値を取得
+    console.log(rowPrice) // 行内のminPriceの値を取得
+    console.log(rowStock) // 行内のminPriceの値を取得
+
+    /*if(textValue == rowProduct_name){
+      $(this).show(); // 最小価格条件を満たす行を表示
+    } else {
+      $(this).hide(); // 最小価格条件を満たさない行を非表示
+    }*/
+    
+    if (isNaN(minPrice) || minPrice <= rowPrice) {
+      $(this).show(); // 最小価格条件を満たす行を表示
+    } else {
+      $(this).hide(); // 最小価格条件を満たさない行を非表示
+    }
+  });
+
+  /*$.each(arrayData[0].result, function(key, value){
+    id = value.id;
+    img_path = value.img_path;
+    product_name = value.product_name;
+    price = value.price;
+    stock = value.stock;
+    company_id = value.company_id;
+    company_name = value.company_name;*/
+
+    
+
+    //console.log("company_name",company_id);
+    /*if ($keyword && $company != '会社名') {
+      $products->where('product_name', 'LIKE', "%$keyword%")
+      ->where('companies.id', '=', "$company");
+  } elseif ($keyword) {
+      $products->where('product_name', 'LIKE', "%$keyword%");
+  } elseif ($company != '会社名') {
+      $products->where('companies.id', '=', "$company");
+  }
+  
+  if($minPrice && $maxPrice){
+      $products->whereBetween('price', [$minPrice, $maxPrice]);
+  }elseif($minPrice){
+      $products->where('price', '>=', $minPrice);
+  }elseif($maxPrice){
+      $products->where('price', '<=', $maxPrice);
+  }
+  
+  if($minStock && $maxStock){
+      $products->whereBetween('stock', [$minStock, $maxStock]);
+  }elseif($minStock){
+      $products->where('stock', '>=', $minStock);
+  }elseif($maxStock){
+      $products->where('stock', '<=', $maxStock);
+  }*/
+
+    /*if(product_name.includes(textValue)){
+      console.log(product_name);
+    }
+    if(company_id == companyValue){
+      console.log(company_name);
+    }*/
+
+    //let text = $('#text').val();
+    //let companies = $('#companies').val();
+
+    /*if(text && companies=="会社名"){
+      if(product_name.includes(textValue)){
+        console.log(product_name);
+      }
+      //console.log(product_name);
+    }*/
+
+    /*if(textValue && companyValue!="会社名"){
+      if(product_name.includes(textValue) && company_id == companyValue){
+        console.log(product_name);
+        console.log(company_name);
+      }
+    }else if(textValue){
+      if(product_name.includes(textValue) && company_id == companyValue){
+        console.log(product_name);
+      }
+    }else if(companyValue!="会社名"){
+      console.log(company_name);
+    }
+
+    if(minPrice && maxPrice){
+      console.log("両価格入力済み");
+    }else if(minPrice){
+
+      console.log("最小価格");
+    }else if(maxPrice){
+      console.log("最大価格");
+    }*/
+  /*})*/
+
+    //let minPrice = parseInt($(this).val()); // 入力された最小価格を取得
+
+    
+
+}
