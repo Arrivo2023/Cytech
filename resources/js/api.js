@@ -425,5 +425,4 @@ function searchOperation(
       $(this).hide(); // 検索条件に合致しない場合は行を非表示
     }
   });
-
 }
