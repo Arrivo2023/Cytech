@@ -7,13 +7,6 @@
     <div class="title">
         <h1><a href="{{ route('index') }}">商品一覧画面</a></h1>
     </div>
-
-    <div>
-        <button id=testSarchBtn style="width: 100px; height:50px;"></button>
-    </div>
-    <div>
-        <button id=testSarchBtn2 style="width: 100px; height:50px;"></button>
-    </div>
     
     <div class="search-container">
         <form id="sarchForm" action="{{ route('sarchList') }}" method="GET">
@@ -25,6 +18,7 @@
                     <input type="text" placeholder="検索キーワード" name="keyword" id="text" class="text">
                     <select name="companies" id="companies">™
                         <option hidden>会社名</option>
+                        <option>未選択</option>
                         @foreach($companies as $company)
                         <option value="{{$company->id}}">{{$company->company_name}}</option>
                         @endforeach
