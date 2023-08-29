@@ -409,13 +409,17 @@ function searchOperation(
     let companyNameSearch = rowCompanyId == companyValue || companyValue == "会社名" || companyValue == "未選択";
     let minPriceSearch = isNaN(minPrice) || rowPrice >= minPrice || minPrice ==="";
     let maxPriceSearch = isNaN(maxPrice) || rowPrice <= maxPrice || maxPrice ==="";
+    let minStockSearch = isNaN(minStock) || rowStock >= minStock || minStock ==="";
+    let maxStockSearch = isNaN(maxStock) || rowStock <= maxStock || maxStock ==="";
 
     console.log("productNameSearch:", productNameSearch);
     console.log("companyNameSearch:", companyNameSearch);
     console.log("minPriceSearch:", minPriceSearch);
     console.log("maxPriceSearch:", maxPriceSearch);
+    console.log("minStockSearch:", minStockSearch);
+    console.log("maxStockearch:", maxStockSearch);
 
-    if ((productNameSearch && companyNameSearch) && (minPriceSearch && maxPriceSearch)) {
+    if ((productNameSearch && companyNameSearch) && (minPriceSearch && maxPriceSearch) && (minStockSearch && maxStockSearch)) {
       $(this).show(); // 検索条件に合致する場合は行を表示
     } else {
       $(this).hide(); // 検索条件に合致しない場合は行を非表示
