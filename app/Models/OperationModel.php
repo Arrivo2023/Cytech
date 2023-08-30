@@ -160,4 +160,5 @@ class OperationModel extends Model
             ->where('id', $data->productId)
             ->delete();
     }
+
 }

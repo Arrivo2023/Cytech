@@ -62,4 +62,5 @@ class OperationController extends Controller
 
         return redirect(route('index'));
     }
+
 }
