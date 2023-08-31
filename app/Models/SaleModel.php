@@ -9,12 +9,23 @@ class SaleModel extends Model
 {
 	//購入処理api
 	public function buyApi($data){
-		$key = $data->input('key');
-		$value = $data->input('value');
+
+		//var_dump($data);
+
+		//$key = $data->input('key');
+		$value1 = $data['レモンティー'];
+		$value2 = $data['ミルクティー'];
+		$value3 = $data['コーヒー'];
+		$value4 = $data['天然水'];
+
+		//var_dump($value);
 
 		return[
-			'key' => $key,
-			'value' => $value,
+			//'key' => $key,
+			'value1' => $value1,
+			'value2' => $value2,
+			'value3' => $value3,
+			'value4' => $value4,
 		];
 
 

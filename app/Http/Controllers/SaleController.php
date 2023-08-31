@@ -25,19 +25,30 @@ class SaleController extends Controller
 
 			return back();
 		}*/
-		
-		\Log::info('Received key: ' . $request->input('key'));
-    \Log::info('Received value: ' . $request->input('value'));
+
+		//dd($request);
+
+		$input = $request->all();
+
+		//var_dump("あいうえお");
+		//\Log::info('Received key: ' . $request->input('key'));
+    //\Log::info('Received value: ' . $request->input('value'));
 
 		$model = new SaleModel();
 		//$getList = $model->getList();
-		$result = $model->buyApi($request);
-		$key = $result['key'];
-		$value = $result['value'];
+		$result = $model->buyApi($input);
+		//$key = $result['key'];
+		$value1 = $result['value1'];
+		$value2 = $result['value2'];
+		$value3 = $result['value3'];
+		$value4 = $result['value4'];
 
 		return response()->json([
-			'key' => $key,
-			'value' => $value
+			//'key' => $key,
+			'value1' => $value1,
+			'value2' => $value2,
+			'value3' => $value3,
+			'value4' => $value4,
 		]);
 	}
 
