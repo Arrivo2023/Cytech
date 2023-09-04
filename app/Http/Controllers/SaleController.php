@@ -12,6 +12,8 @@ class SaleController extends Controller
 	//
 	public function buyApi(Request $request){
 		
+		$input = $request->all();
+
 		/*DB::beginTransaction();
 
 		try {
@@ -28,28 +30,34 @@ class SaleController extends Controller
 
 		//dd($request);
 
-		$input = $request->all();
-
-		//var_dump("あいうえお");
-		//\Log::info('Received key: ' . $request->input('key'));
-    //\Log::info('Received value: ' . $request->input('value'));
-
-		$model = new SaleModel();
-		//$getList = $model->getList();
-		$result = $model->buyApi($input);
-		//$key = $result['key'];
-		$value1 = $result['value1'];
-		$value2 = $result['value2'];
-		$value3 = $result['value3'];
-		$value4 = $result['value4'];
+		$operationModel = new OperationModel();
+		$saleModel = new SaleModel();
+		//$getList = $operationModel->getList();
+		$result = $saleModel->buyApi($input);
+		$productsName = $result['value'];
+		$getLists = $saleModel->getLists();
+		$addTable = $saleModel->addSales($productsName);
 
 		return response()->json([
-			//'key' => $key,
+			'productsName' => $productsName,
+		]);
+
+
+		/*if($value1 && $value2 && $value3 && $value4){
+			return response()->json([
 			'value1' => $value1,
 			'value2' => $value2,
 			'value3' => $value3,
 			'value4' => $value4,
 		]);
+		}elseif($value1 && $value2 && $value3){
+			return response()->json([
+				'value1' => $value1,
+				'value2' => $value2,
+				'value3' => $value3,
+			]);
+		}*/
+
 	}
 
 	public function apiHello(Request $request)

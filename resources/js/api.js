@@ -36,7 +36,8 @@ function createTableList($item){
 
     let form = $('<form>')
     .attr({
-      'action': getRoute,
+      'class': 'delBtnForm',
+      //'action': getRoute,
       'method': 'POST'
     });
 
@@ -59,7 +60,8 @@ function createTableList($item){
     .attr({
       'class': 'delBtn',
       'type': 'submit',
-      'value': '削除'
+      'value': '削除',
+      'data-deleteId': id
     });
 
 
@@ -341,9 +343,9 @@ function sortTable() {
 
 
 async function operation(){
-  let tableView = await tableList();
+  await tableList();
   // 初期表示時にソートを実行
-  let sort = await sortTable();
+  await sortTable();
 }
 
 operation();
@@ -361,7 +363,7 @@ $('#sarchForm').submit(function(event) {
   // フォームの値を取得
   let textValue = $('#text').val();
   let companyValue = $('#companies').val();
-  let companyId = $('#companies').text();
+  //let companyId = $('#companies').text();
   let minPrice = $('#minPrice').val();
   let maxPrice = $('#maxPrice').val();
   let minStock = $('#minStock').val();
@@ -385,8 +387,6 @@ function searchOperation(
   maxPrice,
   minStock,
   maxStock) {
-  // ここで非同期処理を実行する
-  // 例えば、fetch() などを使用してサーバーにデータを送信し、結果を取得するなど
   
   console.log("companyValue",companyValue);
 
@@ -426,3 +426,49 @@ function searchOperation(
     }
   });
 }
+
+/*async function delOpereation(){
+  let delId = $('deleteId').val();
+  //const response = await fetch("itemDelete");
+    //const data = await response.json();
+    
+    console.log("data",delId);
+}*/
+
+
+  /*$('.delBtn').click(function(){
+    //delOpereation();
+    let delId = $('deleteId').val();
+    console.log("data",delId);
+});*/
+
+/*let deleteBtn = document.getElementsByClassName("delBtn");
+      deleteBtn.addEventListener("click", function(){
+        let delId = $('deleteId').val();
+    console.log("data",delId);
+      });*/
+
+
+  $('.delBtn').on('click',function(event) {
+    event.preventDefault(); // デフォルトのフォーム送信をキャンセル
+
+    let id = $(this).data('deleteId');
+    console.log(id);
+
+    let clickBtn = $(this);
+
+    $.ajax({
+      url: 'itemDelete',
+      type: 'POST',
+      data: {'productId': id}
+    }).done(function(){
+      clickBtn.parents('tr').remove();
+    })
+
+    // フォームの値を取得
+    let deleteId = $('.deleteId').val();
+    console.log(deleteId);
+
+    // 取得した値を非同期処理に渡す
+    //deleteOperation(deleteId);
+  });

@@ -60,7 +60,7 @@ class OperationController extends Controller
             return back();
         }
 
-        return redirect(route('index'));
+        //return redirect(route('index'));
     }
 
 }

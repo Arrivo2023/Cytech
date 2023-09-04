@@ -12,26 +12,41 @@ class SaleModel extends Model
 
 		//var_dump($data);
 
-		//$key = $data->input('key');
-		$value1 = $data['レモンティー'];
-		$value2 = $data['ミルクティー'];
-		$value3 = $data['コーヒー'];
-		$value4 = $data['天然水'];
-
-		//var_dump($value);
+		$productsName = $data['name'];
 
 		return[
-			//'key' => $key,
-			'value1' => $value1,
-			'value2' => $value2,
-			'value3' => $value3,
-			'value4' => $value4,
+			'value' => $productsName,
 		];
+	}
 
+	public $products;
 
-		/*DB::table('sales')
+	public function __construct() {
+			// コンストラクタでプロパティを初期化
+			$this->$products = 0;
+	}
+
+	public function getLists(){
+		$this->products = DB::table('products')
+			->select('id','product_name')
+			->get();
+			return $products;
+	}
+
+	public function addSales($formData){
+
+		$productsId = [];
+		$count = count($formData);
+
+		for($i = 1; $i <= $count; $i++){
+			if($formData == $products->product_name){
+				$productsId[] = $this->products->id;
+			}
+		}
+		
+		DB::table('sales')
 				->insert([
-						'product_id' => $data->input(''),
-				]);*/
+						'product_id' => 1,
+				]);
 	}
 }
