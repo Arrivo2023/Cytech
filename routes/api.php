@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/sample', [App\Http\Controllers\SaleController::class, 'apiHello']);
 //Route::get('/sample', [App\Http\Controllers\SaleController::class, 'apiHello']);
-Route::post('/sale', [App\Http\Controllers\SaleController::class, 'buyApi']);
+Route::post('/sale', [App\Http\Controllers\SaleController::class, 'buyProducts']);
 
 
 //Route::get('/ajax_index', [App\Http\Controllers\SarchController::class, 'ajaxIndex'])->name('ajax_index');

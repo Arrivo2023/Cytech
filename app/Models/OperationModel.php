@@ -146,9 +146,10 @@ class OperationModel extends Model
     //削除
     public function itemDelete($data)
     {
+        $id = $data->input('productId');
         //先にstorage/imagesの画像ファイルを削除
         $oldPath = DB::table('products')
-            ->where('id', $data->productId)
+            ->where('id', $id)
             ->value('img_path');
         \Log::debug($oldPath);
 
@@ -157,7 +158,7 @@ class OperationModel extends Model
         }
 
         DB::table('products')
-            ->where('id', $data->productId)
+            ->where('id', $id)
             ->delete();
     }
 

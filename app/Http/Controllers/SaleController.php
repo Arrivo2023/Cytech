@@ -10,9 +10,62 @@ use Illuminate\Support\Facades\DB;
 class SaleController extends Controller
 {
 	//
-	public function buyApi(Request $request){
-		
+	public function buyProducts(Request $request){
+
 		$input = $request->all();
+		//var_dump($input);
+		
+		DB::beginTransaction();
+
+		try{
+			$product_id = $input['product_id'];
+			//$product_id = $request->input('product_id');
+			var_dump($product_id);
+			//$product = Product::find($product_id);
+			$product = DB::table('products')
+			->select('id','product_name','stock')
+			->where('id',$product_id)
+			->get();
+			
+			$product_stock = DB::table('products')
+			->select('stock')
+			->where('id',$product_id)
+			->value('stock');
+
+			var_dump($product);
+
+			if($product->isEmpty()){
+				return response()->json(['massage' => '商品が見つかりません']);
+			}
+
+			if($product_stock<1){
+				//DB::rollback();
+				return response()->json(['massage' => '在庫不足']);
+			}
+
+			$stock = 1;
+			DB::table('products')
+			->where('id', $product_id)
+			->decrement('stock', $stock);
+
+			DB::commit();
+
+			return response()->json(['massage' => '購入完了']);
+	
+		} catch (\Exception $e) {
+			DB::rollback();
+
+			return response()->json(['error' => $product_id]);
+		}
+	}
+
+
+
+
+
+
+
+		//$input = $request->all();
 
 		/*DB::beginTransaction();
 
@@ -30,17 +83,17 @@ class SaleController extends Controller
 
 		//dd($request);
 
-		$operationModel = new OperationModel();
-		$saleModel = new SaleModel();
+		//$operationModel = new OperationModel();
+		//$saleModel = new SaleModel();
 		//$getList = $operationModel->getList();
-		$result = $saleModel->buyApi($input);
-		$productsName = $result['value'];
-		$getLists = $saleModel->getLists();
-		$addTable = $saleModel->addSales($productsName);
+		//$result = $saleModel->buyApi($input);
+		//$productsName = $result['value'];
+		//$getLists = $saleModel->getLists();
+		//$addTable = $saleModel->addSales($productsName);
 
-		return response()->json([
+		/*return response()->json([
 			'productsName' => $productsName,
-		]);
+		]);*/
 
 
 		/*if($value1 && $value2 && $value3 && $value4){
@@ -57,8 +110,6 @@ class SaleController extends Controller
 				'value3' => $value3,
 			]);
 		}*/
-
-	}
 
 	public function apiHello(Request $request)
 	{

@@ -1,6 +1,7 @@
 const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
 let id = null;
+let image = null
 let img_path = null;
 let product_name = null;
 let price = null;
@@ -61,7 +62,8 @@ function createTableList($item){
       'class': 'delBtn',
       'type': 'submit',
       'value': '削除',
-      'data-deleteId': id
+      'data-deleteId': id,
+      'onclick':'deleteProduct(event,'+ id+');'
     });
 
 
@@ -126,11 +128,6 @@ async function tableList(){
 
       //let productsId = document.getElementsByClassName('productsId');
       //let productsName = document.getElementsByClassName('productsName');
-    
-      // ソートを実行する関数
-      
-
-      //ソートここまで---------------------
 
 
     
@@ -216,7 +213,7 @@ async function tableList(){
           companyNameElement.value = companyName;
           productPriceElement.value = productPrice;
           productStockElement.value = productStock;
-          productImageElement.src = productImage;
+          productImageElement.src = img_path;
           productCommentElement.value = productComment;
           
           console.log(productImage);
@@ -427,48 +424,29 @@ function searchOperation(
   });
 }
 
-/*async function delOpereation(){
-  let delId = $('deleteId').val();
-  //const response = await fetch("itemDelete");
-    //const data = await response.json();
-    
-    console.log("data",delId);
-}*/
-
-
-  /*$('.delBtn').click(function(){
-    //delOpereation();
-    let delId = $('deleteId').val();
-    console.log("data",delId);
-});*/
-
-/*let deleteBtn = document.getElementsByClassName("delBtn");
-      deleteBtn.addEventListener("click", function(){
-        let delId = $('deleteId').val();
-    console.log("data",delId);
-      });*/
-
-
-  $('.delBtn').on('click',function(event) {
+  function deleteProduct(event,id){
     event.preventDefault(); // デフォルトのフォーム送信をキャンセル
 
-    let id = $(this).data('deleteId');
+    //let id = $(this).data('deleteId');
     console.log(id);
 
-    let clickBtn = $(this);
+    //let clickBtn = $(this);
 
     $.ajax({
+      headers:{
+        'X-CSRF-TOKEN':csrfToken
+      },
       url: 'itemDelete',
-      type: 'POST',
-      data: {'productId': id}
+      type: 'GET',
+      data: $('.delBtnForm').serialize(),
     }).done(function(){
-      clickBtn.parents('tr').remove();
+    $('.tableItems').each(function() {
+        let dataIndex = $(this).data("index");
+        if (dataIndex === id) {
+            $(this).remove();
+        }
+    });
+    }).fail(function(){
+      alert('通信失敗');
     })
-
-    // フォームの値を取得
-    let deleteId = $('.deleteId').val();
-    console.log(deleteId);
-
-    // 取得した値を非同期処理に渡す
-    //deleteOperation(deleteId);
-  });
+  }

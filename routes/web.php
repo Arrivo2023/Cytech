@@ -27,7 +27,7 @@ Route::get('/sarch', [App\Http\Controllers\SarchController::class, 'ajaxSarchLis
 
 Route::post('/newRecord', [App\Http\Controllers\OperationController::class, 'newRecord'])->name('newRecord');
 Route::post('/update', [App\Http\Controllers\OperationController::class, 'update'])->name('update');
-Route::post('/itemDelete', [App\Http\Controllers\OperationController::class, 'itemDelete'])->name('itemDelete');
+Route::get('/itemDelete', [App\Http\Controllers\OperationController::class, 'itemDelete'])->name('itemDelete');
 //Route::post('/destroy', [App\Http\Controllers\OperationController::class, 'destroy'])->name('destroy');
 
 /*
