@@ -423,10 +423,7 @@ function searchOperation(
   function deleteProduct(event,id){
     event.preventDefault(); // デフォルトのフォーム送信をキャンセル
 
-    //let id = $(this).data('deleteId');
     console.log(id);
-
-    //let clickBtn = $(this);
 
     $.ajax({
       headers:{
@@ -434,7 +431,8 @@ function searchOperation(
       },
       url: 'itemDelete',
       type: 'GET',
-      data: $('.delBtnForm').serialize(),
+      //data: $('.delBtnForm').serialize(),
+      data: {'productId':id},
     }).done(function(){
     $('.tableItems').each(function() {
         let dataIndex = $(this).data("index");
