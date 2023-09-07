@@ -52,6 +52,7 @@ class OperationController extends Controller
         try {
             $model = new OperationModel();
             $model->itemDelete($request);
+            \Log::debug($request);
             DB::commit();
         } catch (\Exception $e) {
             \Log::debug($e->getMessage());

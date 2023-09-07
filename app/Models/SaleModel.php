@@ -7,51 +7,35 @@ use Illuminate\Support\Facades\DB;
 
 class SaleModel extends Model
 {
-	//購入処理api
-	/*public function buyApi($data){
 
-		//var_dump($data);
-
-		$productsName = $data['name'];
-
-		return[
-			'value' => $productsName,
-		];
-	}*/
-
-	/*public $products;
-
-	public function __construct() {
-			// コンストラクタでプロパティを初期化
-			$this->$products = 0;
-	}*/
-
-	/*public function getLists(){
-		$this->products = DB::table('products')
-			->select('id','product_name')
-			->get();
-			return $products;
-	}*/
-
-
-	public function buyProducts(){
-		return $this->belongsTo(product::class);
+	public function getProduct($product_id){
+		return DB::table('products')
+				->select('id','product_name','stock')
+				->where('id',$product_id)
+				->get();
+	}
+				
+	public function getStock($product_id){
+		return DB::table('products')
+			->select('stock')
+			->where('id',$product_id)
+			->value('stock');
 	}
 
-	/*public function addSales($formData){
+	public function decrementStock($product_id){
+		$stock = 1;
+		DB::table('products')
+			->where('id', $product_id)
+			->decrement('stock', $stock);
+	}
 
-		$productsId = [];
-		$count = count($formData);
-
-		for($i = 1; $i <= $count; $i++){
-			if($formData == $products->product_name){
-				$productsId[] = $this->products->id;
-			}
-		}
-		
+	public function addSalesTable($product_id){
 		DB::table('sales')
-				->insert([
-						'product_id' => 1,
-				]);
-	}*/
+			->insert([
+				'product_id' => $product_id,
+				'created_at' => now(),
+				'updated_at' => now()
+		]);
+	}
+
 }

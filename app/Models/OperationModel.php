@@ -99,6 +99,7 @@ class OperationModel extends Model
                 'stock' => $data->stock,
                 'comment' => $data->comment,
                 'img_path' => $filePath,
+                'created_at' => now(),
             ]);
     }
 
@@ -140,12 +141,14 @@ class OperationModel extends Model
                 'stock' => $data->stock,
                 'comment' => $data->comment,
                 'img_path' => $filePath,
+				'updated_at' => now()
             ]);
     }
 
     //削除
     public function itemDelete($data)
     {
+        \Log::debug($data);
         $id = $data->input('productId');
         //先にstorage/imagesの画像ファイルを削除
         $oldPath = DB::table('products')

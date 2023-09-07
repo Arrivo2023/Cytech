@@ -13,40 +13,28 @@ class SaleController extends Controller
 	public function buyProducts(Request $request){
 
 		$input = $request->all();
-		//var_dump($input);
+		$product_id = $input['product_id'];
 		
 		DB::beginTransaction();
-
+		
 		try{
-			$product_id = $input['product_id'];
-			//$product_id = $request->input('product_id');
-			var_dump($product_id);
-			//$product = Product::find($product_id);
-			$product = DB::table('products')
-			->select('id','product_name','stock')
-			->where('id',$product_id)
-			->get();
-			
-			$product_stock = DB::table('products')
-			->select('stock')
-			->where('id',$product_id)
-			->value('stock');
+			//var_dump($product_id);
 
-			var_dump($product);
+			$salesModel = new SaleModel();
+			$getProduct = $salesModel->getProduct($product_id);
+			$getStock = $salesModel->getStock($product_id);
+			//$decrement = $salesModel->decrement($product_id);
 
-			if($product->isEmpty()){
+			if($getProduct->isEmpty()){
 				return response()->json(['massage' => '商品が見つかりません']);
 			}
 
-			if($product_stock<1){
-				//DB::rollback();
+			if($getStock == 0){
 				return response()->json(['massage' => '在庫不足']);
 			}
 
-			$stock = 1;
-			DB::table('products')
-			->where('id', $product_id)
-			->decrement('stock', $stock);
+			$salesModel->decrementStock($product_id);
+			$salesModel->addSalesTable($product_id);
 
 			DB::commit();
 
@@ -57,67 +45,5 @@ class SaleController extends Controller
 
 			return response()->json(['error' => $product_id]);
 		}
-	}
-
-
-
-
-
-
-
-		//$input = $request->all();
-
-		/*DB::beginTransaction();
-
-		try {
-			$model = new OperationModel();
-			$getList = $model->getList();
-			$model->buyApi($request,$getList);
-			DB::commit();
-		} catch (\Exception $e) {
-			\Log::debug($e->getMessage());
-			DB::rollback();
-
-			return back();
-		}*/
-
-		//dd($request);
-
-		//$operationModel = new OperationModel();
-		//$saleModel = new SaleModel();
-		//$getList = $operationModel->getList();
-		//$result = $saleModel->buyApi($input);
-		//$productsName = $result['value'];
-		//$getLists = $saleModel->getLists();
-		//$addTable = $saleModel->addSales($productsName);
-
-		/*return response()->json([
-			'productsName' => $productsName,
-		]);*/
-
-
-		/*if($value1 && $value2 && $value3 && $value4){
-			return response()->json([
-			'value1' => $value1,
-			'value2' => $value2,
-			'value3' => $value3,
-			'value4' => $value4,
-		]);
-		}elseif($value1 && $value2 && $value3){
-			return response()->json([
-				'value1' => $value1,
-				'value2' => $value2,
-				'value3' => $value3,
-			]);
-		}*/
-
-	public function apiHello(Request $request)
-	{
-		return response()->json(
-			[
-				'morning' => $request->input('morning'),
-				'noon' => $request->input('noon'),
-			]
-		);
 	}
 }

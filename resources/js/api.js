@@ -120,15 +120,8 @@ async function tableList(){
     console.log("配列データ",arrayData);
     console.log(arrayData[0].result);
     
-    let item = data.result;
 
     createTableList(arrayData[0].result);
-
-    //--------------------------------------
-
-      //let productsId = document.getElementsByClassName('productsId');
-      //let productsName = document.getElementsByClassName('productsName');
-
 
     
       // ボタン要素を取得
@@ -193,7 +186,10 @@ async function tableList(){
           
           //取得した行の各sellを変数に代入
           let productId = row.cells[0].textContent;
-          let productImage = row.cells[1].textContent;
+          let cell = row.cells[1];
+          //DOMノードをjQueryオブジェクトに変換
+          let img = $(cell).find('img');
+          let productImage = img.attr('src');
           let productName = row.cells[2].textContent;
           let productPrice = row.cells[3].textContent;
           let productStock = row.cells[4].textContent;
@@ -203,9 +199,9 @@ async function tableList(){
           let productComment = row.cells[6].textContent;
 
           //----------------
-          console.log(`conpanyId ${companyId}`);
-          //----------------
-          
+          //console.log(`conpanyId ${companyId}`);
+          //console.log("productImage:",productImage);
+          //----------------          
           
           // 詳細画面にデータセット
           productIdElement.value = productId;
@@ -213,17 +209,17 @@ async function tableList(){
           companyNameElement.value = companyName;
           productPriceElement.value = productPrice;
           productStockElement.value = productStock;
-          productImageElement.src = img_path;
+          productImageElement.src = productImage
           productCommentElement.value = productComment;
           
-          console.log(productImage);
+          //console.log(productImage);
     
           //編集画面にデータセット
           edit_productIdElement.value = productId+"（IDは変更できません）";
           edit_productNameElement.value = productName;
           edit_productPriceElement.value = productPrice;
           edit_productStockElement.value = productStock;
-          edit_productImageElement.value = productImage;
+          //edit_productImageElement.value = productImage;
           edit_productCommentElement.value = productComment;
 
           console.log(`デフォルト${companyNameElement.value}`);
