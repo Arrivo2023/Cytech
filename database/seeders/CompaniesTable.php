@@ -17,13 +17,13 @@ class CompaniesTable extends Seeder
         DB::table('companies')->insert([
             [
                 'id' => '1',
-                'company_name' => 'The New Gate',
+                'company_name' => '株式会社テスト１',
                 'street_address' => '日本',
                 'representative_name' => 'あああ',
             ],
             [
                 'id' => '2',
-                'company_name' => 'Cytech',
+                'company_name' => '株式会社サンプル１',
                 'street_address' => 'アメリカ',
                 'representative_name' => 'Aaa',
             ],
